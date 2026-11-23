@@ -27,6 +27,7 @@ import {
 } from './utils/soundEngine';
 import { FloorplanModal } from './components/FloorplanModal';
 import { CertificateModal } from './components/CertificateModal';
+import { SkylineIllustration, HouseIcon } from './components/Illustrations';
 
 type Stage = 'pre' | 'drawing' | 'post';
 type FilterTab = 'all' | 'winners' | 'waiting';
@@ -460,11 +461,13 @@ export default function App() {
         {stage === 'pre' && (
           <div className="flex-1 flex flex-col justify-between gap-8">
             {/* 2-Column Asymmetric Architectural Split Hero */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div className="grid grid-cols-1 gap-8 items-stretch">
               {/* Left Column: Editorial Ceremony Brief & Primary Trigger */}
-              <div className="lg:col-span-7 flex flex-col justify-between bg-[#101921] border border-[#D4AE59]/20 p-8 lg:p-10">
-                <div>
-                  <div className="text-xs font-sans tabular-nums uppercase tracking-[0.2em] text-[#D4AE59] mb-3">
+              <div className="relative overflow-hidden flex flex-col justify-between gap-10 bg-[#101921] border border-[#D4AE59]/20 p-8 lg:p-12">
+                <SkylineIllustration className="pointer-events-none absolute right-6 lg:right-10 bottom-[120px] hidden md:block w-[300px] lg:w-[440px] opacity-90" />
+                <div className="relative z-10 max-w-[760px]">
+                  <div className="flex items-center gap-2 text-xs font-sans tabular-nums uppercase tracking-[0.2em] text-[#D4AE59] mb-3">
+                    <HouseIcon className="w-5 h-5" />
                     NHÀ Ở XÃ HỘI · ĐỢT 1
                   </div>
                   <h1
@@ -510,10 +513,10 @@ export default function App() {
                 </div>
 
                 {/* Primary Ceremony Activation Bar */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+                <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-8 border-t border-[#D4AE59]/15">
                   <button
                     onClick={startDrawProcess}
-                    className="px-8 py-4 bg-[#D4AE59] hover:bg-[#E8CC83] text-[#0B1118] font-semibold text-sm tracking-[0.14em] uppercase transition-all flex items-center justify-center gap-3 cursor-pointer shadow-lg"
+                    className="sm:flex-1 px-8 py-4 bg-[#D4AE59] hover:bg-[#E8CC83] text-[#0B1118] font-semibold text-sm tracking-[0.14em] uppercase transition-all flex items-center justify-center gap-3 cursor-pointer shadow-lg"
                   >
                     <span>Kích Hoạt Bốc Thăm Đợt 1</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -525,149 +528,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Right Column: Interactive Architectural Elevation Monolith Diagram */}
-              <div className="lg:col-span-5 bg-[#101921] border border-[#D4AE59]/20 p-6 lg:p-8 flex flex-col justify-between">
-                <div className="flex items-center justify-between text-xs text-[#A3A3A3] pb-3 border-b border-[#D4AE59]/15">
-                  <span className="uppercase tracking-widest font-sans tabular-nums text-[#D4AE59]">
-                    MẶT ĐỨNG · TÒA NHÀ Ở XÃ HỘI
-                  </span>
-                  <span className="font-sans tabular-nums">SỐ TẦNG: 23</span>
-                </div>
-
-                {/* Architectural Tower SVG with interactive highlighted floors */}
-                <div className="my-4 flex-1 flex items-center justify-center relative min-h-[250px]">
-                  <svg
-                    viewBox="0 0 420 260"
-                    className="w-full h-full max-h-[260px]"
-                    fill="none"
-                  >
-                    {/* Base horizon line */}
-                    <line
-                      x1="20"
-                      y1="242"
-                      x2="400"
-                      y2="242"
-                      stroke="rgba(212, 174, 89, 0.35)"
-                      strokeWidth="1"
-                    />
-
-                    {/* Vertical Grid Reference Lines */}
-                    <line
-                      x1="80"
-                      y1="15"
-                      x2="80"
-                      y2="242"
-                      stroke="rgba(212, 174, 89, 0.08)"
-                      strokeDasharray="3 3"
-                    />
-                    <line
-                      x1="230"
-                      y1="15"
-                      x2="230"
-                      y2="242"
-                      stroke="rgba(212, 174, 89, 0.08)"
-                      strokeDasharray="3 3"
-                    />
-
-                    {/* Main Architectural Tower Silhouette */}
-                    <rect
-                      x="95"
-                      y="24"
-                      width="120"
-                      height="218"
-                      stroke="#D4AE59"
-                      strokeWidth="1.5"
-                      fill="rgba(212, 174, 89, 0.03)"
-                    />
-                    {/* Crown / Penthouse setbacks */}
-                    <rect
-                      x="110"
-                      y="12"
-                      width="90"
-                      height="12"
-                      stroke="#D4AE59"
-                      strokeWidth="1.2"
-                    />
-                    {/* Vertical Architectural Mullions */}
-                    <line x1="125" y1="24" x2="125" y2="242" stroke="rgba(212, 174, 89, 0.2)" strokeWidth="0.75" />
-                    <line x1="155" y1="24" x2="155" y2="242" stroke="rgba(212, 174, 89, 0.2)" strokeWidth="0.75" />
-                    <line x1="185" y1="24" x2="185" y2="242" stroke="rgba(212, 174, 89, 0.2)" strokeWidth="0.75" />
-
-                    {/* Highlighted Residences Floors: A5 (T18), A4 (T15), A3 (T12), A2 (T08), A1 (T05) */}
-                    {[
-                      { unit: TARGET_APARTMENTS[4], y: 42, h: 18, label: 'A5 · TẦNG 18 (76,9m²)' },
-                      { unit: TARGET_APARTMENTS[3], y: 78, h: 13, label: 'A4 · TẦNG 15 (69,6m²)' },
-                      { unit: TARGET_APARTMENTS[2], y: 112, h: 14, label: 'A3 · TẦNG 12 (59,3m²)' },
-                      { unit: TARGET_APARTMENTS[1], y: 152, h: 13, label: 'A2 · TẦNG 08 (50,1m²)' },
-                      { unit: TARGET_APARTMENTS[0], y: 188, h: 13, label: 'A1 · TẦNG 05 (36,8m²)' },
-                    ].map((fl) => {
-                      const isHovered = hoveredUnitId === fl.unit.id;
-                      return (
-                        <g
-                          key={fl.unit.id}
-                          className="cursor-pointer"
-                          onMouseEnter={() => setHoveredUnitId(fl.unit.id)}
-                          onClick={() => setSelectedUnitForModal(fl.unit)}
-                        >
-                          <rect
-                            x="95"
-                            y={fl.y}
-                            width="120"
-                            height={fl.h}
-                            fill={
-                              isHovered
-                                ? 'rgba(212, 174, 89, 0.45)'
-                                : 'rgba(212, 174, 89, 0.16)'
-                            }
-                            stroke="#D4AE59"
-                            strokeWidth={isHovered ? '1.6' : '1'}
-                          />
-                          <line
-                            x1="215"
-                            y1={fl.y + fl.h / 2}
-                            x2="255"
-                            y2={fl.y + fl.h / 2}
-                            stroke="#D4AE59"
-                            strokeWidth={isHovered ? '1.5' : '0.8'}
-                          />
-                          <circle
-                            cx="255"
-                            cy={fl.y + fl.h / 2}
-                            r="2.5"
-                            fill="#D4AE59"
-                          />
-                          <text
-                            x="265"
-                            y={fl.y + fl.h / 2 + 3.5}
-                            fill={isHovered ? '#FAFAFA' : '#D4AE59'}
-                            fontSize="10"
-                            fontFamily="JetBrains Mono, monospace"
-                            fontWeight={isHovered ? '600' : '400'}
-                          >
-                            {fl.label}
-                          </text>
-                        </g>
-                      );
-                    })}
-                  </svg>
-                </div>
-
-                {/* Bottom interactive hint */}
-                <div className="pt-3 border-t border-[#D4AE59]/15 flex items-center justify-between text-xs text-[#A3A3A3]">
-                  <span>Chọn tầng trên mặt đứng hoặc thẻ căn hộ để xem bản vẽ</span>
-                  <button
-                    onClick={() => {
-                      const unit =
-                        TARGET_APARTMENTS.find((u) => u.id === hoveredUnitId) ||
-                        TARGET_APARTMENTS[0];
-                      setSelectedUnitForModal(unit);
-                    }}
-                    className="text-[#D4AE59] hover:underline font-medium cursor-pointer whitespace-nowrap"
-                  >
-                    Xem mặt bằng {hoveredUnitId || 'A1'} →
-                  </button>
-                </div>
-              </div>
             </div>
 
             {/* Full-Width 5-Column Residence Portfolio Strip */}
