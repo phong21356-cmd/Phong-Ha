@@ -92,7 +92,7 @@ export const TARGET_APARTMENTS: ApartmentUnit[] = [
     name: 'Căn loại A4',
     floor: 'Tầng 15',
     area: '69,6 m²',
-    bedrooms: '2 phòng ngủ · 2 vệ sinh',
+    bedrooms: '2 phòng ngủ',
     orientation: 'Nhà ở xã hội · Quỹ 105 căn',
     referencePrice: '≈ 1,95 tỷ đồng (28 triệu đ/m²)',
     highlights: '2 phòng ngủ · 2 khu vệ sinh',

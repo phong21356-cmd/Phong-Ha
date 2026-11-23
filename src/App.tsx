@@ -27,7 +27,9 @@ import {
 } from './utils/soundEngine';
 import { FloorplanModal } from './components/FloorplanModal';
 import { CertificateModal } from './components/CertificateModal';
-import { SkylineIllustration, HouseIcon } from './components/Illustrations';
+import { HouseIcon } from './components/Illustrations';
+import { UnitCard } from './components/UnitCard';
+import buildingImg from './assets/building.webp';
 
 type Stage = 'pre' | 'drawing' | 'post';
 type FilterTab = 'all' | 'winners' | 'waiting';
@@ -464,7 +466,7 @@ export default function App() {
             <div className="grid grid-cols-1 gap-8 items-stretch">
               {/* Left Column: Editorial Ceremony Brief & Primary Trigger */}
               <div className="relative overflow-hidden flex flex-col justify-between gap-10 bg-[#101921] border border-[#D4AE59]/20 p-8 lg:p-12">
-                <SkylineIllustration className="pointer-events-none absolute right-6 lg:right-10 bottom-[120px] hidden md:block w-[300px] lg:w-[440px] opacity-90" />
+                <img src={buildingImg} alt="Tòa nhà ở xã hội An Phúc Imperia" className="pointer-events-none select-none absolute right-4 lg:right-10 bottom-[110px] hidden md:block w-[320px] lg:w-[520px]" />
                 <div className="relative z-10 max-w-[760px]">
                   <div className="flex items-center gap-2 text-xs font-sans tabular-nums uppercase tracking-[0.2em] text-[#D4AE59] mb-3">
                     <HouseIcon className="w-5 h-5" />
@@ -544,53 +546,15 @@ export default function App() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                {TARGET_APARTMENTS.map((apt) => {
-                  const isActive = hoveredUnitId === apt.id;
-                  return (
-                    <div
-                      key={apt.id}
-                      onMouseEnter={() => setHoveredUnitId(apt.id)}
-                      onClick={() => setSelectedUnitForModal(apt)}
-                      className={`group bg-[#101921] border transition-colors p-5 flex flex-col justify-between cursor-pointer ${
-                        isActive
-                          ? 'border-[#D4AE59] bg-[#16212B]'
-                          : 'border-[#D4AE59]/20 hover:border-[#D4AE59]/60'
-                      }`}
-                    >
-                      <div>
-                        {/* Editorial Numbering & Typology Code (No Pill Badges) */}
-                        <div className="flex items-center justify-between text-xs font-sans tabular-nums text-[#A3A3A3] mb-3 pb-2 border-b border-[#D4AE59]/15">
-                          <span className="text-[#D4AE59] font-semibold">
-                            {apt.indexNumber}. CĂN {apt.id}
-                          </span>
-                          <span>{apt.code}</span>
-                        </div>
-
-                        <h3 className="text-lg font-sans font-semibold text-[#FAFAFA] group-hover:text-[#D4AE59] transition-colors mb-1.5">
-                          {apt.name}
-                        </h3>
-
-                        {/* Unboxed metadata with middle-dot separators */}
-                        <div className="text-xs text-[#D4D4D4] font-sans tabular-nums mb-2">
-                          {apt.floor} <span aria-hidden="true">·</span> {apt.area}
-                        </div>
-                        <div className="text-xs text-[#A3A3A3] mb-4">
-                          {apt.bedrooms} <span aria-hidden="true">·</span> {apt.orientation}
-                        </div>
-                      </div>
-
-                      <div className="pt-3 border-t border-[#D4AE59]/15 flex items-center justify-between text-xs">
-                        <span className="font-sans tabular-nums text-[#D4AE59] font-medium tabular-nums">
-                          {apt.referencePrice}
-                        </span>
-                        <span className="text-[#A3A3A3] group-hover:text-[#FAFAFA] flex items-center gap-1 transition-colors">
-                          <span>Mặt bằng</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
+                {TARGET_APARTMENTS.map((apt) => (
+                  <UnitCard
+                    key={apt.id}
+                    id={apt.id}
+                    active={hoveredUnitId === apt.id}
+                    onHover={() => setHoveredUnitId(apt.id)}
+                    onOpen={() => setSelectedUnitForModal(apt)}
+                  />
+                ))}
               </div>
             </div>
           </div>
