@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lễ Bốc Thăm Quyền Mua Căn Hộ - Luxury Residence</title>
+  <title>An Phúc Imperia · Nhà ở xã hội — Lễ bốc thăm</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-gradient: radial-gradient(circle at 50% 20%, #152542 0%, #080f1d 60%, #03070d 100%);
@@ -15,11 +15,11 @@
       --gold-light: #fff0be;
       --gold-gradient: linear-gradient(135deg, #fff2c4 0%, #e2b14c 50%, #996e1a 100%);
       --gold-border: linear-gradient(135deg, rgba(255, 226, 142, 0.8), rgba(184, 134, 43, 0.4));
-      --cyan-glow: #00e5ff;
+      --cyan-glow: #D4AE59;
       --navy-card: rgba(14, 25, 48, 0.75);
       --navy-card-border: rgba(226, 177, 76, 0.35);
-      --font-title: 'Cinzel', serif;
-      --font-body: 'Montserrat', sans-serif;
+      --font-title: 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
     }
 
     * {
@@ -60,7 +60,7 @@
       right: 10%;
       width: 450px;
       height: 450px;
-      background: rgba(0, 229, 255, 0.12);
+      background: rgba(212, 174, 89, 0.12);
     }
     .light-center {
       top: 30%;
@@ -144,14 +144,14 @@
       align-items: center;
       gap: 8px;
       padding: 6px 18px;
-      background: rgba(0, 229, 255, 0.1);
-      border: 1px solid rgba(0, 229, 255, 0.5);
+      background: rgba(212, 174, 89, 0.1);
+      border: 1px solid rgba(212, 174, 89, 0.5);
       border-radius: 50px;
       font-size: 13px;
       font-weight: 700;
       color: #6ef1ff;
       letter-spacing: 1px;
-      box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
+      box-shadow: 0 0 15px rgba(212, 174, 89, 0.25);
     }
     .status-badge.locked {
       background: rgba(226, 177, 76, 0.15);
@@ -162,9 +162,9 @@
     .pulse-dot {
       width: 8px;
       height: 8px;
-      background: #00e5ff;
+      background: #D4AE59;
       border-radius: 50%;
-      box-shadow: 0 0 8px #00e5ff;
+      box-shadow: 0 0 8px #D4AE59;
       animation: pulse 1.5s infinite;
     }
     .status-badge.locked .pulse-dot {
@@ -219,7 +219,7 @@
       border: 2px dashed rgba(226, 177, 76, 0.4);
       animation: rotateRing 20s linear infinite;
     }
-    .ring-1 { width: 310px; height: 310px; border-color: rgba(0, 229, 255, 0.4); }
+    .ring-1 { width: 310px; height: 310px; border-color: rgba(212, 174, 89, 0.4); }
     .ring-2 { width: 250px; height: 250px; animation-direction: reverse; animation-duration: 15s; }
     .ring-3 { width: 190px; height: 190px; border: 1px solid rgba(255, 230, 160, 0.3); }
 
@@ -333,9 +333,9 @@
       font-weight: 700;
       padding: 3px 8px;
       border-radius: 4px;
-      background: rgba(0, 229, 255, 0.1);
-      color: #00e5ff;
-      border: 1px solid rgba(0, 229, 255, 0.3);
+      background: rgba(212, 174, 89, 0.1);
+      color: #D4AE59;
+      border: 1px solid rgba(212, 174, 89, 0.3);
     }
 
     /* ====================================================
@@ -377,13 +377,13 @@
       border: 1px solid rgba(226, 177, 76, 0.4);
       border-radius: 30px;
       padding: 6px;
-      box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+      box-shadow: 0 0 30px rgba(212, 174, 89, 0.15);
     }
     .progress-bar-fill {
       height: 14px;
       width: 0%;
       border-radius: 20px;
-      background: linear-gradient(90deg, #00e5ff, #f5cf75, #ffd978);
+      background: linear-gradient(90deg, #D4AE59, #f5cf75, #ffd978);
       box-shadow: 0 0 15px rgba(245, 207, 117, 0.8);
       transition: width 0.1s linear;
     }
@@ -722,6 +722,46 @@
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* ===== NOXH An Phúc: theme theo thiết kế Figma ===== */
+    :root {
+      --bg-gradient: #0B1118;
+      --gold-primary: #D4AE59;
+      --gold-secondary: #B88C39;
+      --gold-light: #E8CC83;
+      --gold-gradient: linear-gradient(100deg, #B88C39 0%, #E8CC83 32%, #C69A49 62%, #F2D990 100%);
+      --gold-border: linear-gradient(135deg, rgba(212,174,89,0.6), rgba(184,140,57,0.3));
+      --cyan-glow: #D4AE59;
+      --navy-card: #101921;
+      --navy-card-border: rgba(212, 174, 89, 0.22);
+    }
+    body { background: #0B1118; }
+    .ambient-light, .hologram-ring { display: none !important; }
+    .main-title { font-weight: 600; letter-spacing: -0.01em; text-shadow: none; }
+    .btn-activate { border-radius: 8px; width: 100%; max-width: none; justify-content: center; background: var(--gold-gradient); box-shadow: none; font-weight: 700; letter-spacing: 0.14em; }
+    .btn-activate:hover { transform: none; box-shadow: 0 8px 28px rgba(212,174,89,0.25); }
+    .util-btn, .tab-btn, input { border-radius: 8px; }
+    .inventory-panel, .board-winners-showcase, .board-waiting-showcase { border-radius: 16px; background: #101921; border: 1px solid rgba(212,174,89,0.22); }
+    .hero-building { display: flex; justify-content: center; margin-bottom: 16px; }
+    .hero-building img { width: min(560px, 80vw); height: auto; display: block; }
+    .inventory-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+    .unit-card { display: flex; flex-direction: column; overflow: hidden; padding: 0 !important; border-radius: 18px !important; background: #FAF8F2 !important; border: 1px solid #D4D4D4 !important; color: #171717; text-align: left; }
+    .unit-card:hover { box-shadow: 0 0 0 2px rgba(212,174,89,0.45); }
+    .unit-plan { background: #F7F0DB; aspect-ratio: 16/9; display: flex; flex-direction: column; justify-content: space-between; padding: 6% 12% 12px; }
+    .plan-frame { background: #fff; border: 2px solid #9E7A33; border-radius: 6px; overflow: hidden; width: 100%; aspect-ratio: 396/221; display: flex; flex-direction: column; }
+    .plan-row { display: flex; }
+    .room { display: flex; align-items: center; justify-content: center; font-size: 11px; color: #171717; border: 1px solid #9E7A33; margin-left: -1px; }
+    .room:first-child { margin-left: 0; }
+    .room-pk { background: rgba(199,163,82,0.10); } .room-pn { background: rgba(199,163,82,0.25); }
+    .room-wc { background: rgba(199,163,82,0.35); } .room-lg { background: rgba(199,163,82,0.06); }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chip { padding: 2px 8px; border: 1px solid #C7A352; border-radius: 999px; background: rgba(255,255,255,0.92); font-size: 11px; color: #171717; white-space: nowrap; }
+    .unit-info { padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; }
+    .unit-name { font-size: 18px; font-weight: 600; color: #171717; }
+    .unit-sub { font-size: 12px; color: #525252; margin-top: 2px; }
+    .unit-price-label { font-size: 11px; color: #737373; }
+    .unit-price-val { font-size: 16px; font-weight: 600; color: #1C2834; }
+    @media (max-width: 1100px) { .inventory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   </style>
 </head>
 <body>
@@ -754,10 +794,10 @@
   <header>
     <div class="logo-badge">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      LUXURY RESIDENCE GALA
+      AN PHÚC IMPERIA · NHÀ Ở XÃ HỘI
     </div>
-    <h1 class="main-title" id="page-title">LỄ BỐC THĂM QUYỀN MUA CĂN HỘ</h1>
-    <div class="subtitle">ĐỢT MỞ BÁN ĐẶC BIỆT • TỔNG CỘNG 500 KHÁCH HÀNG THAM GIA</div>
+    <h1 class="main-title" id="page-title">LỄ BỐC THĂM XẾP CĂN NHÀ Ở XÃ HỘI</h1>
+    <div class="subtitle">ĐỢT 1 • TỔNG CỘNG 500 KHÁCH HÀNG THAM GIA</div>
     <div class="status-badge" id="system-status">
       <span class="pulse-dot"></span>
       <span id="status-text">TRẠNG THÁI: SẴN SÀNG KHỞI ĐỘNG (500 KHÁCH HÀNG ĐÃ CHECK-IN)</span>
@@ -771,32 +811,7 @@
          BƯỚC 1: TRƯỚC KHI QUAY (PRE-SPIN)
     ==================================================== -->
     <div id="stage-pre">
-      <div class="hero-hologram">
-        <div class="hologram-ring ring-1"></div>
-        <div class="hologram-ring ring-2"></div>
-        <div class="hologram-ring ring-3"></div>
-        <!-- 3D Holographic Tower SVG Icon -->
-        <svg class="hologram-tower-icon" width="130" height="170" viewBox="0 0 24 24" fill="none" stroke="url(#goldGrad)" stroke-width="1.4">
-          <defs>
-            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#fff2c4"/>
-              <stop offset="50%" stop-color="#e2b14c"/>
-              <stop offset="100%" stop-color="#996e1a"/>
-            </linearGradient>
-          </defs>
-          <rect x="4" y="2" width="16" height="20" rx="2"/>
-          <line x1="8" y1="6" x2="8" y2="6.01"/>
-          <line x1="12" y1="6" x2="12" y2="6.01"/>
-          <line x1="16" y1="6" x2="16" y2="6.01"/>
-          <line x1="8" y1="10" x2="8" y2="10.01"/>
-          <line x1="12" y1="10" x2="12" y2="10.01"/>
-          <line x1="16" y1="10" x2="16" y2="10.01"/>
-          <line x1="8" y1="14" x2="8" y2="14.01"/>
-          <line x1="12" y1="14" x2="12" y2="14.01"/>
-          <line x1="16" y1="14" x2="16" y2="14.01"/>
-          <path d="M10 22v-4h4v4"/>
-        </svg>
-      </div>
+      <div class="hero-building"><img src="building.webp" alt="Tòa nhà ở xã hội An Phúc Imperia"></div>
 
       <button class="btn-activate" onclick="startDrawProcess()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -806,34 +821,29 @@
       <!-- Apartment Inventory Display -->
       <div class="inventory-panel">
         <div class="panel-header">
-          <span class="panel-title">DANH MỤC CĂN HỘ MỞ THƯỞNG HÔM NAY (QUYỀN CHỌN MUA ĐỢT 1)</span>
-          <span style="font-size: 12px; color: var(--gold-light);">TỔNG SỐ SUẤT: 05 CĂN ĐỘC BẢN</span>
+          <span class="panel-title">DANH MỤC LOẠI CĂN MỞ BỐC THĂM ĐỢT 1</span>
+          <span style="font-size: 12px; color: var(--gold-light);">05 LOẠI CĂN MẪU A1 – A5</span>
         </div>
         <div class="inventory-grid">
-          <div class="apartment-card">
-            <div class="apt-badge">CĂN A1</div>
-            <div class="apt-spec">Tầng 05 • 85m²<br>3 Phòng Ngủ • View Sông</div>
-            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          <div class="apartment-card unit-card">
+            <div class="unit-plan"><div class="plan-frame"><div class="plan-row" style="height:62.4%"><div class="room room-pk" style="flex:48">Phòng khách</div><div class="room room-pn" style="flex:52">PN</div></div><div class="plan-row" style="height:37.6%"><div class="room room-wc" style="flex:39">WC</div><div class="room room-lg" style="flex:61">Logia</div></div></div><div class="chips"><span class="chip">1 phòng khách</span><span class="chip">1 WC</span><span class="chip">1 logia</span></div></div>
+            <div class="unit-info"><div><div class="unit-name">Căn A1</div><div class="unit-sub">1 phòng ngủ · 36,8 m²</div></div><div class="unit-price"><div class="unit-price-label">Giá bán dự kiến</div><div class="unit-price-val">[giá] đ/m²</div></div></div>
           </div>
-          <div class="apartment-card">
-            <div class="apt-badge">CĂN A2</div>
-            <div class="apt-spec">Tầng 08 • 92m²<br>3 Phòng Ngủ • Căn Góc</div>
-            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          <div class="apartment-card unit-card">
+            <div class="unit-plan"><div class="plan-frame"><div class="plan-row" style="height:62.4%"><div class="room room-pk" style="flex:48">Phòng khách</div><div class="room room-pn" style="flex:52">PN</div></div><div class="plan-row" style="height:37.6%"><div class="room room-wc" style="flex:39">WC</div><div class="room room-lg" style="flex:61">Logia</div></div></div><div class="chips"><span class="chip">1 phòng khách</span><span class="chip">1 WC</span><span class="chip">1 logia</span></div></div>
+            <div class="unit-info"><div><div class="unit-name">Căn A2</div><div class="unit-sub">1 phòng ngủ + · 50,1 m²</div></div><div class="unit-price"><div class="unit-price-label">Giá bán dự kiến</div><div class="unit-price-val">[giá] đ/m²</div></div></div>
           </div>
-          <div class="apartment-card">
-            <div class="apt-badge">CĂN A3</div>
-            <div class="apt-spec">Tầng 12 • 105m²<br>Penthouse mini • View Sky</div>
-            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          <div class="apartment-card unit-card">
+            <div class="unit-plan"><div class="plan-frame"><div class="plan-row" style="height:62.4%"><div class="room room-pk" style="flex:48">Phòng khách</div><div class="room room-pn" style="flex:26">PN</div><div class="room room-pn" style="flex:26">PN</div></div><div class="plan-row" style="height:37.6%"><div class="room room-wc" style="flex:40">WC</div><div class="room room-lg" style="flex:30">Logia</div><div class="room room-lg" style="flex:30">Logia</div></div></div><div class="chips"><span class="chip">1 phòng khách</span><span class="chip">1 WC</span><span class="chip">2 logia</span></div></div>
+            <div class="unit-info"><div><div class="unit-name">Căn A3</div><div class="unit-sub">2 phòng ngủ · 59,3 m²</div></div><div class="unit-price"><div class="unit-price-label">Giá bán dự kiến</div><div class="unit-price-val">[giá] đ/m²</div></div></div>
           </div>
-          <div class="apartment-card">
-            <div class="apt-badge">CĂN A4</div>
-            <div class="apt-spec">Tầng 15 • 78m²<br>2 Phòng Ngủ • Ban công rộng</div>
-            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          <div class="apartment-card unit-card">
+            <div class="unit-plan"><div class="plan-frame"><div class="plan-row" style="height:62.4%"><div class="room room-pk" style="flex:48">Phòng khách</div><div class="room room-pn" style="flex:26">PN</div><div class="room room-pn" style="flex:26">PN</div></div><div class="plan-row" style="height:37.6%"><div class="room room-wc" style="flex:20">WC</div><div class="room room-wc" style="flex:20">WC</div><div class="room room-lg" style="flex:30">Logia</div><div class="room room-lg" style="flex:30">Logia</div></div></div><div class="chips"><span class="chip">1 phòng khách</span><span class="chip">2 WC</span><span class="chip">2 logia</span></div></div>
+            <div class="unit-info"><div><div class="unit-name">Căn A4</div><div class="unit-sub">2 phòng ngủ · 69,6 m²</div></div><div class="unit-price"><div class="unit-price-label">Giá bán dự kiến</div><div class="unit-price-val">[giá] đ/m²</div></div></div>
           </div>
-          <div class="apartment-card">
-            <div class="apt-badge">CĂN A5</div>
-            <div class="apt-spec">Tầng 18 • 110m²<br>Duplex • Vị trí Hoàng Gia</div>
-            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          <div class="apartment-card unit-card">
+            <div class="unit-plan"><div class="plan-frame"><div class="plan-row" style="height:62.4%"><div class="room room-pk" style="flex:40">Phòng khách</div><div class="room room-pn" style="flex:20">PN</div><div class="room room-pn" style="flex:20">PN</div><div class="room room-pn" style="flex:20">PN</div></div><div class="plan-row" style="height:37.6%"><div class="room room-wc" style="flex:20">WC</div><div class="room room-wc" style="flex:20">WC</div><div class="room room-lg" style="flex:60">Logia</div></div></div><div class="chips"><span class="chip">1 phòng khách</span><span class="chip">2 WC</span><span class="chip">1 logia</span></div></div>
+            <div class="unit-info"><div><div class="unit-name">Căn A5</div><div class="unit-sub">3 phòng ngủ · 76,9 m²</div></div><div class="unit-price"><div class="unit-price-label">Giá bán dự kiến</div><div class="unit-price-val">[giá] đ/m²</div></div></div>
           </div>
         </div>
       </div>
@@ -863,7 +873,7 @@
           <div class="board-header">
             <div class="board-title-gold">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
-              CHỦ NHÂN TRÚNG QUYỀN MUA CĂN HỘ (A1 - A5)
+              HỒ SƠ ĐƯỢC XẾP CĂN LOẠI A1 – A5
             </div>
             <span style="font-size: 12px; color: var(--cyan-glow); font-weight: 700;">5/5 ĐÃ XÁC NHẬN</span>
           </div>
@@ -946,11 +956,11 @@
     }
 
     const targetApartments = [
-      { id: "A1", desc: "Tầng 05 • 85m² • View Sông" },
-      { id: "A2", desc: "Tầng 08 • 92m² • Căn Góc" },
-      { id: "A3", desc: "Tầng 12 • 105m² • Penthouse mini" },
-      { id: "A4", desc: "Tầng 15 • 78m² • Ban công rộng" },
-      { id: "A5", desc: "Tầng 18 • 110m² • Duplex Hoàng Gia" }
+      { id: "A1", desc: "Tầng 05 • 36,8 m² • 1 phòng ngủ" },
+      { id: "A2", desc: "Tầng 08 • 50,1 m² • 1 phòng ngủ +" },
+      { id: "A3", desc: "Tầng 12 • 59,3 m² • 2 phòng ngủ" },
+      { id: "A4", desc: "Tầng 15 • 69,6 m² • 2 phòng ngủ" },
+      { id: "A5", desc: "Tầng 18 • 76,9 m² • 3 phòng ngủ" }
     ];
 
     // Generate 500 Attendees
@@ -1222,8 +1232,8 @@
         const match = card.dataset.code.includes(q) || card.dataset.phone.includes(q) || card.dataset.name.includes(q);
         card.style.display = match ? 'flex' : 'none';
         if (q && match) {
-          card.style.borderColor = '#00e5ff';
-          card.style.boxShadow = '0 0 25px rgba(0, 229, 255, 0.6)';
+          card.style.borderColor = '#D4AE59';
+          card.style.boxShadow = '0 0 25px rgba(212, 174, 89, 0.6)';
         } else {
           card.style.borderColor = 'var(--gold-primary)';
           card.style.boxShadow = '';
@@ -1234,8 +1244,8 @@
         const match = card.dataset.code.includes(q) || card.dataset.phone.includes(q) || card.dataset.name.includes(q);
         card.style.display = match ? 'flex' : 'none';
         if (q && match) {
-          card.style.borderColor = '#00e5ff';
-          card.style.background = 'rgba(0, 229, 255, 0.15)';
+          card.style.borderColor = '#D4AE59';
+          card.style.background = 'rgba(212, 174, 89, 0.15)';
         } else {
           card.style.borderColor = '';
           card.style.background = '';
@@ -1272,7 +1282,7 @@
         document.getElementById('stage-post').style.display = 'none';
         document.getElementById('btn-reset').style.display = 'none';
         document.getElementById('btn-export').style.display = 'none';
-        document.getElementById('page-title').innerText = "LỄ BỐC THĂM QUYỀN MUA CĂN HỘ";
+        document.getElementById('page-title').innerText = "LỄ BỐC THĂM XẾP CĂN NHÀ Ở XÃ HỘI";
         const statusEl = document.getElementById('system-status');
         statusEl.className = "status-badge";
         statusEl.innerHTML = `<span class="pulse-dot"></span><span>TRẠNG THÁI: SẴN SÀNG KHỞI ĐỘNG (500 KHÁCH HÀNG ĐÃ CHECK-IN)</span>`;
@@ -1324,7 +1334,7 @@
       canvas.height = window.innerHeight;
 
       const pieces = [];
-      const colors = ['#f5cf75', '#d4a341', '#fff0be', '#00e5ff', '#ffffff', '#e2b14c'];
+      const colors = ['#f5cf75', '#d4a341', '#fff0be', '#D4AE59', '#ffffff', '#e2b14c'];
 
       for (let i = 0; i < 180; i++) {
         pieces.push({

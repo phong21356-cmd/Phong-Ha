@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trình chỉnh giao diện · An Phúc Imperia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1118; --panel:#101921; --panel2:#16212B; --line:rgba(212,174,89,.18);
+    --text:#FAFAFA; --muted:#A3A3A3; --gold:#D4AE59; --gold2:#E8CC83; --sel:#4C9AFF;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:13px/1.4 Inter,system-ui,sans-serif;overflow:hidden}
+  button,input,select,textarea{font:inherit;color:inherit}
+  #app{display:grid;grid-template-rows:48px 1fr;height:100vh}
+  #top{display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+  #top .brand{font-weight:600;letter-spacing:.12em;color:var(--gold);margin-right:8px;white-space:nowrap}
+  .btn{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer;white-space:nowrap}
+  .btn:hover{border-color:var(--gold)}
+  .btn.primary{background:var(--gold);color:#0B1118;border-color:var(--gold);font-weight:600}
+  .btn.on{border-color:var(--gold);color:var(--gold)}
+  .btn:disabled{opacity:.4;cursor:default}
+  .sep{width:1px;height:22px;background:var(--line);margin:0 4px}
+  .spacer{flex:1}
+  #main{display:grid;grid-template-columns:270px 1fr 300px;min-height:0}
+  .side{background:var(--panel);overflow:auto;min-height:0}
+  #left{border-right:1px solid var(--line)} #right{border-left:1px solid var(--line)}
+  .side h4{margin:0;padding:10px 12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:2;display:flex;justify-content:space-between;align-items:center}
+  #layers .row{display:flex;align-items:center;gap:4px;padding:3px 8px;cursor:pointer;white-space:nowrap;overflow:hidden}
+  #layers .row:hover{background:var(--panel2)}
+  #layers .row.sel{background:rgba(76,154,255,.22)}
+  #layers .tag{color:var(--gold);font-size:11px}
+  #layers .lbl{color:var(--muted);overflow:hidden;text-overflow:ellipsis;font-size:12px}
+  #layers .tg{width:14px;text-align:center;color:var(--muted);flex:none}
+  #layers .eye{margin-left:auto;color:var(--muted);flex:none}
+  #layers .row.hid .lbl,#layers .row.hid .tag{opacity:.4}
+  #canvasWrap{position:relative;overflow:hidden;background:#2a2f36;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:20px 20px;min-width:0}
+  #stage{position:absolute;left:0;top:0;transform-origin:0 0}
+  #frame{border:0;background:#fff;display:block;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  #overlay{position:absolute;left:0;top:0;pointer-events:none}
+  .box{position:absolute;pointer-events:none;border:1px solid var(--sel)}
+  #hover{border-style:dashed;opacity:.8}
+  #selbox{border:1.5px solid var(--sel)}
+  .h{position:absolute;width:9px;height:9px;background:#fff;border:1.5px solid var(--sel);pointer-events:auto;margin:-5px 0 0 -5px;border-radius:2px}
+  .tagchip{position:absolute;left:-1.5px;top:-20px;background:var(--sel);color:#fff;font-size:11px;padding:1px 6px;border-radius:3px;white-space:nowrap;pointer-events:none}
+  #shield{position:fixed;inset:0;z-index:50;display:none}
+  #zoombar{position:absolute;right:12px;bottom:12px;display:flex;gap:6px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:4px 6px;z-index:5}
+  #hint{position:absolute;left:12px;bottom:12px;color:var(--muted);font-size:12px;background:rgba(16,25,33,.85);padding:6px 10px;border-radius:8px;z-index:5}
+  .sec{padding:10px 12px;border-bottom:1px solid var(--line)}
+  .sec .t{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .f{display:flex;flex-direction:column;gap:3px}
+  .f label{font-size:11px;color:var(--muted)}
+  .f input[type=text],.f input[type=number],.f select,.f textarea{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:5px 7px;width:100%;min-width:0}
+  .f textarea{resize:vertical;min-height:64px}
+  .f input:focus,.f select:focus,.f textarea:focus{outline:1px solid var(--gold)}
+  .colr{display:flex;gap:6px}
+  .colr input[type=color]{width:34px;height:30px;padding:0;border:1px solid var(--line);border-radius:6px;background:var(--panel2);flex:none}
+  .seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .seg button{flex:1;background:var(--panel2);border:0;padding:5px;cursor:pointer}
+  .seg button.on{background:var(--gold);color:#0B1118}
+  .empty{padding:24px 16px;color:var(--muted);text-align:center}
+  kbd{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:0 4px;font-size:11px}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="top">
+    <span class="brand">AN PHÚC · EDITOR</span>
+    <button class="btn" id="bUndo" title="Ctrl+Z">↶ Hoàn tác</button>
+    <button class="btn" id="bRedo" title="Ctrl+Shift+Z">↷ Làm lại</button>
+    <span class="sep"></span>
+    <select class="btn" id="size" title="Khung xem">
+      <option value="1440">Desktop 1440</option>
+      <option value="1920">Desktop 1920</option>
+      <option value="1024">Tablet 1024</option>
+      <option value="390">Mobile 390</option>
+    </select>
+    <button class="btn on" id="bEdit">✎ Chỉnh sửa</button>
+    <button class="btn" id="bRefresh" title="Cập nhật cây lớp">⟳ Lớp</button>
+    <span class="spacer"></span>
+    <label class="btn" for="file">Mở file HTML…</label>
+    <input type="file" id="file" accept=".html,.htm" hidden>
+    <button class="btn" id="bReload" title="Tải lại file gốc (bỏ mọi chỉnh sửa)">Đặt lại</button>
+    <button class="btn" id="bCopy">Sao chép HTML</button>
+    <button class="btn primary" id="bExport">⬇ Xuất HTML</button>
+  </div>
+  <div id="main">
+    <div class="side" id="left"><h4>Lớp <span id="count"></span></h4><div id="layers"></div></div>
+    <div id="canvasWrap">
+      <div id="stage"><iframe id="frame" title="Trang"></iframe><div id="overlay">
+        <div class="box" id="hover"></div>
+        <div class="box" id="selbox"><span class="tagchip" id="chip"></span></div>
+      </div></div>
+      <div id="hint">Bấm chọn · kéo để di chuyển · kéo ô vuông để đổi kích thước · nhấp đúp sửa chữ · <kbd>Ctrl</kbd>+cuộn để zoom · <kbd>Space</kbd>+kéo để cuộn</div>
+      <div id="zoombar"><button class="btn" id="zOut">−</button><span id="zv">100%</span><button class="btn" id="zIn">+</button><button class="btn" id="zFit">Vừa khung</button></div>
+    </div>
+    <div class="side" id="right"><h4>Thuộc tính</h4><div id="props"><div class="empty">Chọn một phần tử trên canvas hoặc trong danh sách lớp.</div></div></div>
+  </div>
+</div>
+<div id="shield"></div>
+
+<script>
+(function(){
+  const SRC='assets/aistudio/index_2a6addc9.html';
+  const $=s=>document.querySelector(s);
+  const frame=$('#frame'),stage=$('#stage'),wrap=$('#canvasWrap'),overlay=$('#overlay'),shield=$('#shield');
+  let doc=null,win=null,sel=null,hoverEl=null,editMode=true,zoom=1,panX=40,panY=40,spaceDown=false;
+  let srcdocMode=null;
+  const hist=[],redoStack=[];
+
+  /* ---------------- history ---------------- */
+  function exec(cmd){cmd.redo();hist.push(cmd);redoStack.length=0;syncBtns()}
+  function undo(){const c=hist.pop();if(!c)return;c.undo();redoStack.push(c);afterChange();syncBtns()}
+  function redo(){const c=redoStack.pop();if(!c)return;c.redo();hist.push(c);afterChange();syncBtns()}
+  function syncBtns(){$('#bUndo').disabled=!hist.length;$('#bRedo').disabled=!redoStack.length}
+  function setStyle(el,prop,val){
+    const old=el.style.getPropertyValue(prop);
+    if(old===val)return;
+    exec({redo(){val===''?el.style.removeProperty(prop):el.style.setProperty(prop,val)},
+          undo(){old===''?el.style.removeProperty(prop):el.style.setProperty(prop,old)}});
+    afterChange();
+  }
+  function setStyles(el,obj){
+    const olds={};for(const k in obj)olds[k]=el.style.getPropertyValue(k);
+    exec({redo(){for(const k in obj)obj[k]===''?el.style.removeProperty(k):el.style.setProperty(k,obj[k])},
+          undo(){for(const k in olds)olds[k]===''?el.style.removeProperty(k):el.style.setProperty(k,olds[k])}});
+    afterChange();
+  }
+  function setText(el,val){
+    const old=el.textContent;if(old===val)return;
+    exec({redo(){el.textContent=val},undo(){el.textContent=old}});afterChange();
+  }
+  function afterChange(){drawSel();renderProps();}
+
+  /* ---------------- helpers ---------------- */
+  const rgbToHex=c=>{const m=c&&c.match(/rgba?\(([^)]+)\)/);if(!m)return'#000000';const p=m[1].split(',').map(x=>parseFloat(x));
+    if(p.length>3&&p[3]===0)return'#000000';return'#'+p.slice(0,3).map(n=>Math.round(n).toString(16).padStart(2,'0')).join('')};
+  const px=v=>{const n=parseFloat(v);return isNaN(n)?0:Math.round(n*100)/100};
+  const isLeafText=el=>el.children.length===0&&el.textContent.trim().length>0;
+  const skip=el=>['SCRIPT','STYLE','LINK','META','TITLE','HEAD','NOSCRIPT','BR'].includes(el.tagName)||el.hasAttribute('data-ed');
+  function label(el){let s=el.id?'#'+el.id:(typeof el.className==='string'&&el.className.trim()?'.'+el.className.trim().split(/\s+/)[0]:'');
+    if(isLeafText(el))s+=' “'+el.textContent.trim().slice(0,28)+'”';return s}
+  function getTranslate(el){const t=el.style.translate;if(!t)return[0,0];const p=t.split(/\s+/).map(parseFloat);return[p[0]||0,p[1]||0]}
+
+  /* ---------------- layout / zoom ---------------- */
+  function applyView(){stage.style.transform=`translate(${panX}px,${panY}px) scale(${zoom})`;$('#zv').textContent=Math.round(zoom*100)+'%';drawSel()}
+  function fit(){const w=parseInt($('#size').value);zoom=Math.min(1,(wrap.clientWidth-80)/w);panX=Math.max(20,(wrap.clientWidth-w*zoom)/2);panY=30;applyView()}
+  function sizeFrame(){
+    const w=parseInt($('#size').value);frame.style.width=w+'px';frame.style.height='900px';
+    overlay.style.width=w+'px';
+    try{const h=Math.max(900,doc.documentElement.scrollHeight);frame.style.height=h+'px';overlay.style.height=h+'px'}catch(e){}
+    fit();
+  }
+
+  /* ---------------- iframe wiring ---------------- */
+  function load(){
+    sel=null;hoverEl=null;hist.length=0;redoStack.length=0;syncBtns();
+    if(srcdocMode!==null){frame.removeAttribute('src');frame.srcdoc=srcdocMode}else{frame.removeAttribute('srcdoc');frame.src=SRC+'?v='+Date.now()}
+  }
+  frame.addEventListener('load',()=>{
+    try{doc=frame.contentDocument;win=frame.contentWindow}catch(e){alert('Không truy cập được nội dung trang (khác nguồn).');return}
+    const st=doc.createElement('style');st.setAttribute('data-ed','1');
+    st.textContent='*{cursor:default!important} [contenteditable=true]{cursor:text!important;outline:2px solid #4C9AFF!important;user-select:text!important;-webkit-user-select:text!important} body{overflow:hidden!important}';
+    doc.head.appendChild(st);
+    wire();setTimeout(()=>{sizeFrame();renderLayers()},400);
+  });
+  function wire(){
+    const opt={capture:true};
+    doc.addEventListener('click',e=>{if(!editMode)return;e.preventDefault();e.stopPropagation()},opt);
+    doc.addEventListener('mouseover',e=>{if(!editMode)return;hoverEl=e.target;drawHover()},opt);
+    doc.addEventListener('mouseleave',()=>{hoverEl=null;drawHover()},opt);
+    doc.addEventListener('mousedown',e=>{
+      if(!editMode||e.button!==0||spaceDown)return;
+      if(e.target.isContentEditable)return;
+      e.preventDefault();e.stopPropagation();
+      select(e.target);startMove(e);
+    },opt);
+    doc.addEventListener('dblclick',e=>{
+      if(!editMode)return;e.preventDefault();e.stopPropagation();
+      const el=e.target;if(isLeafText(el))editText(el);
+    },opt);
+    doc.addEventListener('keydown',kd,opt);
+    win.addEventListener('scroll',()=>drawSel());
+  }
+  function editText(el){
+    const old=el.textContent;el.contentEditable='true';el.focus();
+    const r=doc.createRange();r.selectNodeContents(el);const s=win.getSelection();s.removeAllRanges();s.addRange(r);
+    const done=()=>{el.removeEventListener('blur',done);el.removeAttribute('contenteditable');
+      const val=el.textContent;if(val!==old){el.textContent=old;setText(el,val)}else drawSel();renderLayers()};
+    el.addEventListener('blur',done);
+    el.addEventListener('keydown',ev=>{if(ev.key==='Escape'){ev.preventDefault();el.textContent=old;el.blur()}});
+  }
+
+  /* ---------------- selection overlay ---------------- */
+  const HANDLES=[[0,0,-1,-1,'nwse'],[.5,0,0,-1,'ns'],[1,0,1,-1,'nesw'],[1,.5,1,0,'ew'],[1,1,1,1,'nwse'],[.5,1,0,1,'ns'],[0,1,-1,1,'nesw'],[0,.5,-1,0,'ew']];
+  const selbox=$('#selbox');
+  HANDLES.forEach(h=>{const d=document.createElement('div');d.className='h';d.dataset.hx=h[2];d.dataset.hy=h[3];d.style.cursor=h[4]+'-resize';
+    d.style.left=(h[0]*100)+'%';d.style.top=(h[1]*100)+'%';
+    d.addEventListener('mousedown',e=>{e.preventDefault();e.stopPropagation();startResize(e,h[2],h[3])});selbox.appendChild(d)});
+  function rectOf(el){const r=el.getBoundingClientRect();return{x:r.left,y:r.top,w:r.width,h:r.height}}
+  function place(box,el){if(!el||!el.isConnected||el===doc.documentElement){box.style.display='none';return}
+    const r=rectOf(el);box.style.display='block';box.style.left=r.x+'px';box.style.top=r.y+'px';box.style.width=r.w+'px';box.style.height=r.h+'px'}
+  function drawHover(){const hb=$('#hover');if(!hoverEl||hoverEl===sel||skip(hoverEl))hb.style.display='none';else place(hb,hoverEl)}
+  function drawSel(){
+    place(selbox,sel);
+    if(sel&&sel.isConnected){$('#chip').textContent=sel.tagName.toLowerCase()+' · '+Math.round(sel.getBoundingClientRect().width)+'×'+Math.round(sel.getBoundingClientRect().height);
+      selbox.querySelectorAll('.h').forEach(h=>h.style.transform='scale('+(1/zoom)+')');$('#chip').style.transform='scale('+(1/zoom)+')';$('#chip').style.transformOrigin='0 100%'}
+    drawHover();
+  }
+  function select(el){
+    if(!el||el.nodeType!==1){return}
+    if(el===doc.documentElement)el=doc.body;
+    sel=el;drawSel();renderProps();markLayer();
+  }
+
+  /* ---------------- move / resize ---------------- */
+  let drag=null;
+  function startMove(e){
+    if(!sel||sel===doc.body)return;
+    const [tx,ty]=getTranslate(sel);drag={type:'move',sx:e.clientX,sy:e.clientY,tx,ty,moved:false,el:sel};
+    // e.clientX trong iframe là toạ độ iframe (chưa scale) — dùng chung hệ với delta
+    shield.style.display='none';
+    const mm=ev=>{if(!drag)return;const dx=ev.clientX-drag.sx,dy=ev.clientY-drag.sy;
+      if(!drag.moved&&Math.abs(dx)+Math.abs(dy)<3)return;drag.moved=true;
+      drag.el.style.translate=(drag.tx+dx)+'px '+(drag.ty+dy)+'px';drawSel()};
+    const mu=()=>{doc.removeEventListener('mousemove',mm,true);doc.removeEventListener('mouseup',mu,true);window.removeEventListener('mouseup',mu);
+      if(drag&&drag.moved){const el=drag.el,nt=el.style.translate,ot=drag.tx+'px '+drag.ty+'px';el.style.translate=ot;setStyle(el,'translate',nt)}drag=null};
+    doc.addEventListener('mousemove',mm,true);doc.addEventListener('mouseup',mu,true);window.addEventListener('mouseup',mu);
+  }
+  function startResize(e,hx,hy){
+    if(!sel)return;const el=sel,r=el.getBoundingClientRect(),[tx,ty]=getTranslate(el);
+    const o={w:el.style.width,h:el.style.height,t:el.style.translate,minw:el.style.minWidth,minh:el.style.minHeight,flex:el.style.flex};
+    const sx=e.clientX,sy=e.clientY,w0=r.width,h0=r.height;shield.style.display='block';shield.style.cursor=e.target.style.cursor;
+    const mm=ev=>{const dx=(ev.clientX-sx)/zoom,dy=(ev.clientY-sy)/zoom;
+      const nw=Math.max(8,w0+hx*dx),nh=Math.max(8,h0+hy*dy);
+      if(hx!==0){el.style.width=nw+'px';el.style.minWidth='0';el.style.flex='none'}
+      if(hy!==0){el.style.height=nh+'px';el.style.minHeight='0'}
+      const ntx=tx+(hx<0?(w0-nw):0),nty=ty+(hy<0?(h0-nh):0);el.style.translate=ntx+'px '+nty+'px';drawSel()};
+    const mu=()=>{shield.style.display='none';window.removeEventListener('mousemove',mm);window.removeEventListener('mouseup',mu);
+      const n={width:el.style.width,height:el.style.height,translate:el.style.translate,'min-width':el.style.minWidth,'min-height':el.style.minHeight,flex:el.style.flex};
+      el.style.width=o.w;el.style.height=o.h;el.style.translate=o.t;el.style.minWidth=o.minw;el.style.minHeight=o.minh;el.style.flex=o.flex;
+      setStyles(el,n)};
+    window.addEventListener('mousemove',mm);window.addEventListener('mouseup',mu);
+  }
+
+  /* ---------------- keyboard ---------------- */
+  function kd(e){
+    const t=e.target;if(t&&(t.isContentEditable||['INPUT','TEXTAREA','SELECT'].includes(t.tagName)))return;
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo();return}
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();return}
+    if(e.key==='Escape'){sel=null;drawSel();renderProps();markLayer();return}
+    if(!sel||sel===doc.body)return;
+    const step=e.shiftKey?10:1;let dx=0,dy=0;
+    if(e.key==='ArrowLeft')dx=-step;else if(e.key==='ArrowRight')dx=step;else if(e.key==='ArrowUp')dy=-step;else if(e.key==='ArrowDown')dy=step;
+    else if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();toggleHide(sel);return}
+    else return;
+    e.preventDefault();const [tx,ty]=getTranslate(sel);setStyle(sel,'translate',(tx+dx)+'px '+(ty+dy)+'px');
+  }
+  document.addEventListener('keydown',e=>{if(e.code==='Space'&&!['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)){spaceDown=true;wrap.style.cursor='grab';e.preventDefault()}kd(e)});
+  document.addEventListener('keyup',e=>{if(e.code==='Space'){spaceDown=false;wrap.style.cursor=''}});
+
+  /* ---------------- pan / zoom ---------------- */
+  wrap.addEventListener('wheel',e=>{
+    e.preventDefault();
+    if(e.ctrlKey||e.metaKey){const r=wrap.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;
+      const nz=Math.min(4,Math.max(.1,zoom*(e.deltaY<0?1.1:1/1.1)));panX=mx-(mx-panX)*(nz/zoom);panY=my-(my-panY)*(nz/zoom);zoom=nz}
+    else{panX-=e.deltaX;panY-=e.deltaY}
+    applyView();
+  },{passive:false});
+  wrap.addEventListener('mousedown',e=>{
+    if(!(spaceDown||e.button===1||e.target===wrap||e.target===stage))return;
+    const sx=e.clientX,sy=e.clientY,px0=panX,py0=panY;e.preventDefault();wrap.style.cursor='grabbing';
+    const mm=ev=>{panX=px0+ev.clientX-sx;panY=py0+ev.clientY-sy;applyView()};
+    const mu=()=>{wrap.style.cursor=spaceDown?'grab':'';window.removeEventListener('mousemove',mm);window.removeEventListener('mouseup',mu)};
+    window.addEventListener('mousemove',mm);window.addEventListener('mouseup',mu);
+  });
+  // chặn mousedown trong iframe khi giữ Space để kéo canvas
+  $('#zIn').onclick=()=>{zoom=Math.min(4,zoom*1.2);applyView()};
+  $('#zOut').onclick=()=>{zoom=Math.max(.1,zoom/1.2);applyView()};
+  $('#zFit').onclick=fit;
+
+  /* ---------------- layers ---------------- */
+  const layersEl=$('#layers');const collapsed=new WeakSet();const rowFor=new Map();
+  function renderLayers(){
+    layersEl.innerHTML='';rowFor.clear();let n=0;
+    const walk=(el,d)=>{
+      if(skip(el))return;n++;
+      const kids=[...el.children].filter(c=>!skip(c)&&!(c.tagName==='svg'&&false));
+      const row=document.createElement('div');row.className='row'+(el.style.display==='none'?' hid':'');row.style.paddingLeft=(8+d*12)+'px';
+      const tg=document.createElement('span');tg.className='tg';tg.textContent=kids.length&&el.tagName.toLowerCase()!=='svg'?(collapsed.has(el)?'▸':'▾'):'';
+      tg.onclick=ev=>{ev.stopPropagation();collapsed.has(el)?collapsed.delete(el):collapsed.add(el);renderLayers()};
+      const tag=document.createElement('span');tag.className='tag';tag.textContent=el.tagName.toLowerCase();
+      const lb=document.createElement('span');lb.className='lbl';lb.textContent=label(el);
+      const eye=document.createElement('span');eye.className='eye';eye.textContent=el.style.display==='none'?'🙈':'👁';eye.onclick=ev=>{ev.stopPropagation();toggleHide(el)};
+      row.append(tg,tag,lb,eye);row.onclick=()=>{select(el);el.scrollIntoView&&el.scrollIntoView({block:'nearest'});};
+      layersEl.appendChild(row);rowFor.set(el,row);
+      if(el.tagName.toLowerCase()==='svg'||collapsed.has(el))return;
+      kids.forEach(k=>walk(k,d+1));
+    };
+    walk(doc.body,0);$('#count').textContent=n;markLayer();
+  }
+  function markLayer(){layersEl.querySelectorAll('.row.sel').forEach(r=>r.classList.remove('sel'));
+    if(sel&&rowFor.get(sel)){const r=rowFor.get(sel);r.classList.add('sel');r.scrollIntoView({block:'nearest'})}}
+  function toggleHide(el){const hid=el.style.display==='none';setStyle(el,'display',hid?'':'none');renderLayers()}
+  $('#bRefresh').onclick=renderLayers;
+
+  /* ---------------- properties ---------------- */
+  const props=$('#props');
+  function renderProps(){
+    if(!sel||!sel.isConnected){props.innerHTML='<div class="empty">Chọn một phần tử trên canvas hoặc trong danh sách lớp.</div>';return}
+    const cs=win.getComputedStyle(sel),r=sel.getBoundingClientRect(),[tx,ty]=getTranslate(sel);
+    const leaf=isLeafText(sel);const ts=sel.tagName.toLowerCase();
+    const num=(id,lbl,val,step)=>`<div class="f"><label>${lbl}</label><input type="number" data-k="${id}" value="${val}" ${step?'step="'+step+'"':''}></div>`;
+    const col=(id,lbl,val)=>`<div class="f"><label>${lbl}</label><div class="colr"><input type="color" data-c="${id}" value="${rgbToHex(val)}"><input type="text" data-ct="${id}" value="${rgbToHex(val)}"></div></div>`;
+    const fw=cs.fontWeight;
+    props.innerHTML=`
+      <div class="sec"><div class="t">Phần tử</div><div style="color:var(--gold)">&lt;${ts}&gt; <span style="color:var(--muted)">${label(sel).replace(/</g,'&lt;')}</span></div></div>
+      ${leaf?`<div class="sec"><div class="t">Nội dung</div><div class="f"><textarea data-text>${sel.textContent.replace(/</g,'&lt;')}</textarea></div></div>`:''}
+      <div class="sec"><div class="t">Bố cục</div><div class="g2">
+        ${num('x','X (dịch ngang)',tx)}${num('y','Y (dịch dọc)',ty)}
+        ${num('w','Rộng',Math.round(r.width))}${num('h','Cao',Math.round(r.height))}
+        ${num('opacity','Độ mờ',px(cs.opacity),0.05)}${num('radius','Bo góc',px(cs.borderTopLeftRadius))}
+      </div></div>
+      <div class="sec"><div class="t">Chữ</div><div class="g2">
+        ${num('fontSize','Cỡ chữ',px(cs.fontSize))}
+        <div class="f"><label>Độ đậm</label><select data-k="fontWeight">${[300,400,500,600,700,800].map(v=>`<option value="${v}" ${String(v)===String(fw)?'selected':''}>${v}</option>`).join('')}</select></div>
+        ${num('lineHeight','Dãn dòng (px)',px(cs.lineHeight)||'')}${num('letterSpacing','Dãn chữ (px)',px(cs.letterSpacing))}
+      </div>
+      <div style="height:8px"></div>${col('color','Màu chữ',cs.color)}
+      <div style="height:8px"></div><div class="seg" data-align>${['left','center','right'].map(a=>`<button data-a="${a}" class="${cs.textAlign===a||(a==='left'&&cs.textAlign==='start')?'on':''}">${{left:'Trái',center:'Giữa',right:'Phải'}[a]}</button>`).join('')}</div></div>
+      <div class="sec"><div class="t">Nền & viền</div>
+        ${col('backgroundColor','Màu nền',cs.backgroundColor)}
+        <div style="height:8px"></div><div class="g2">${num('borderWidth','Viền (px)',px(cs.borderTopWidth))}</div>
+        <div style="height:8px"></div>${col('borderColor','Màu viền',cs.borderTopColor)}
+      </div>
+      <div class="sec"><div class="t">Khoảng cách</div><div class="g4">
+        ${num('paddingTop','↑',px(cs.paddingTop))}${num('paddingRight','→',px(cs.paddingRight))}${num('paddingBottom','↓',px(cs.paddingBottom))}${num('paddingLeft','←',px(cs.paddingLeft))}
+      </div><div style="height:8px"></div><div class="g2">${num('gap','Gap',px(cs.rowGap))}</div></div>
+      <div class="sec"><button class="btn" id="bHide">${sel.style.display==='none'?'Hiện lại':'Ẩn phần tử'}</button> <button class="btn" id="bReset">Bỏ chỉnh sửa phần tử</button></div>`;
+    bindProps();
+  }
+  const NUMPX=new Set(['fontSize','lineHeight','letterSpacing','paddingTop','paddingRight','paddingBottom','paddingLeft','gap','borderWidth']);
+  const kebab=s=>s.replace(/[A-Z]/g,m=>'-'+m.toLowerCase());
+  function bindProps(){
+    props.querySelectorAll('input[data-k],select[data-k]').forEach(inp=>inp.addEventListener('change',()=>{
+      const k=inp.dataset.k,v=inp.value;if(!sel)return;
+      if(k==='x'||k==='y'){const [tx,ty]=getTranslate(sel);const nx=k==='x'?+v:tx,ny=k==='y'?+v:ty;setStyle(sel,'translate',nx+'px '+ny+'px')}
+      else if(k==='w'){setStyles(sel,{width:v+'px','min-width':'0',flex:'none'})}
+      else if(k==='h'){setStyles(sel,{height:v+'px','min-height':'0'})}
+      else if(k==='radius'){setStyle(sel,'border-radius',v+'px')}
+      else if(k==='borderWidth'){setStyles(sel,{'border-width':v+'px','border-style':sel.style.borderStyle||'solid'})}
+      else if(NUMPX.has(k)){setStyle(sel,kebab(k),v===''?'':v+'px')}
+      else setStyle(sel,kebab(k),v);
+    }));
+    props.querySelectorAll('input[data-c]').forEach(i=>{
+      i.addEventListener('input',()=>{sel.style.setProperty(kebab(i.dataset.c),i.value);props.querySelector(`[data-ct="${i.dataset.c}"]`).value=i.value;drawSel()});
+      i.addEventListener('change',()=>{sel.style.removeProperty(kebab(i.dataset.c));setStyle(sel,kebab(i.dataset.c),i.value)});
+    });
+    props.querySelectorAll('input[data-ct]').forEach(i=>i.addEventListener('change',()=>{if(/^#[0-9a-f]{6}$/i.test(i.value))setStyle(sel,kebab(i.dataset.ct),i.value)}));
+    const ta=props.querySelector('[data-text]');if(ta)ta.addEventListener('change',()=>{setText(sel,ta.value);renderLayers()});
+    props.querySelectorAll('[data-align] button').forEach(b=>b.onclick=()=>setStyle(sel,'text-align',b.dataset.a));
+    $('#bHide').onclick=()=>toggleHide(sel);
+    $('#bReset').onclick=()=>{const old=sel.getAttribute('style')||'';const el=sel;
+      exec({redo(){el.removeAttribute('style')},undo(){old?el.setAttribute('style',old):el.removeAttribute('style')}});afterChange();renderLayers()};
+  }
+
+  /* ---------------- export ---------------- */
+  function serialize(){
+    const clone=doc.documentElement.cloneNode(true);
+    clone.querySelectorAll('[data-ed]').forEach(n=>n.remove());
+    clone.querySelectorAll('[contenteditable]').forEach(n=>n.removeAttribute('contenteditable'));
+    clone.querySelectorAll('[style=""]').forEach(n=>n.removeAttribute('style'));
+    return '<!DOCTYPE html>\n'+clone.outerHTML;
+  }
+  $('#bExport').onclick=()=>{const blob=new Blob([serialize()],{type:'text/html;charset=utf-8'});const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);a.download='index_edited.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)};
+  $('#bCopy').onclick=async()=>{try{await navigator.clipboard.writeText(serialize());$('#bCopy').textContent='Đã sao chép ✓'}catch(e){$('#bCopy').textContent='Không sao chép được'}setTimeout(()=>$('#bCopy').textContent='Sao chép HTML',1800)};
+
+  /* ---------------- top bar ---------------- */
+  $('#bUndo').onclick=undo;$('#bRedo').onclick=redo;
+  $('#bEdit').onclick=()=>{editMode=!editMode;$('#bEdit').classList.toggle('on',editMode);$('#bEdit').textContent=editMode?'✎ Chỉnh sửa':'▶ Xem thử';
+    if(!editMode){sel=null;drawSel();renderProps();$('#hover').style.display='none'}};
+  $('#size').onchange=sizeFrame;
+  $('#bReload').onclick=()=>{if(confirm('Bỏ toàn bộ chỉnh sửa và tải lại file?')){srcdocMode=srcdocMode;load()}};
+  $('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+    rd.onload=()=>{let t=String(rd.result);if(!/<base /i.test(t))t=t.replace(/<head[^>]*>/i,m=>m+'<base href="assets/aistudio/">');srcdocMode=t;load()};rd.readAsText(f)};
+  window.addEventListener('resize',()=>{if(doc)fit()});
+  syncBtns();load();
+})();
+</script>
+</body>
+</html>
