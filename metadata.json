@@ -1,0 +1,6 @@
+{
+  "name": "The Aurelia Residences — Lễ Bốc Thăm Quyền Mua Căn Hộ",
+  "description": "Hệ thống bốc thăm và phân bổ quyền mua căn hộ cao cấp với giao diện tối giản, sang trọng dành cho sự kiện mở bán bất động sản hạng sang.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

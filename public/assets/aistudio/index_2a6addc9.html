@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lễ Bốc Thăm Quyền Mua Căn Hộ - Luxury Residence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at 50% 20%, #152542 0%, #080f1d 60%, #03070d 100%);
+      --gold-primary: #f5cf75;
+      --gold-secondary: #d4a341;
+      --gold-light: #fff0be;
+      --gold-gradient: linear-gradient(135deg, #fff2c4 0%, #e2b14c 50%, #996e1a 100%);
+      --gold-border: linear-gradient(135deg, rgba(255, 226, 142, 0.8), rgba(184, 134, 43, 0.4));
+      --cyan-glow: #00e5ff;
+      --navy-card: rgba(14, 25, 48, 0.75);
+      --navy-card-border: rgba(226, 177, 76, 0.35);
+      --font-title: 'Cinzel', serif;
+      --font-body: 'Montserrat', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: #ffffff;
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Background Ambient Lights */
+    .ambient-light {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .light-top-left {
+      top: -150px;
+      left: 10%;
+      width: 450px;
+      height: 450px;
+      background: rgba(226, 177, 76, 0.15);
+    }
+    .light-top-right {
+      top: -150px;
+      right: 10%;
+      width: 450px;
+      height: 450px;
+      background: rgba(0, 229, 255, 0.12);
+    }
+    .light-center {
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 450px;
+      background: rgba(245, 207, 117, 0.08);
+    }
+
+    /* Top Utility Bar */
+    .top-controls {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      display: flex;
+      gap: 12px;
+      z-index: 100;
+    }
+    .util-btn {
+      background: rgba(20, 35, 65, 0.6);
+      border: 1px solid rgba(226, 177, 76, 0.3);
+      color: var(--gold-light);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .util-btn:hover {
+      background: rgba(226, 177, 76, 0.2);
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 24px 20px 10px;
+    }
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-title);
+      font-size: 13px;
+      letter-spacing: 4px;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .main-title {
+      font-family: var(--font-title);
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 25px rgba(212, 163, 65, 0.35);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .subtitle {
+      font-size: 15px;
+      color: #bcd1ee;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.5);
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #6ef1ff;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
+    }
+    .status-badge.locked {
+      background: rgba(226, 177, 76, 0.15);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+      box-shadow: 0 0 18px rgba(226, 177, 76, 0.3);
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #00e5ff;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00e5ff;
+      animation: pulse 1.5s infinite;
+    }
+    .status-badge.locked .pulse-dot {
+      background: var(--gold-primary);
+      box-shadow: 0 0 8px var(--gold-primary);
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.3); }
+      100% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    /* Stage Container */
+    .stage-container {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 40px 25px;
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ====================================================
+       STAGE 1: BEFORE DRAW (TRƯỚC KHI QUAY)
+    ==================================================== */
+    #stage-pre {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      animation: fadeIn 0.8s ease;
+    }
+    .hero-hologram {
+      position: relative;
+      width: 320px;
+      height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .hologram-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px dashed rgba(226, 177, 76, 0.4);
+      animation: rotateRing 20s linear infinite;
+    }
+    .ring-1 { width: 310px; height: 310px; border-color: rgba(0, 229, 255, 0.4); }
+    .ring-2 { width: 250px; height: 250px; animation-direction: reverse; animation-duration: 15s; }
+    .ring-3 { width: 190px; height: 190px; border: 1px solid rgba(255, 230, 160, 0.3); }
+
+    .hologram-tower-icon {
+      position: relative;
+      z-index: 3;
+      filter: drop-shadow(0 0 25px rgba(245, 207, 117, 0.6));
+      animation: floatTower 4s ease-in-out infinite;
+    }
+
+    @keyframes rotateRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes floatTower {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-10px) scale(1.02); }
+    }
+
+    /* Activation Button */
+    .btn-activate {
+      position: relative;
+      background: linear-gradient(135deg, #ffd978 0%, #d4a341 50%, #946914 100%);
+      color: #0b1527;
+      border: none;
+      font-family: var(--font-title);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      padding: 16px 48px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 35px rgba(226, 177, 76, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .btn-activate:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 50px rgba(226, 177, 76, 0.8), inset 0 2px 6px rgba(255, 255, 255, 0.8);
+    }
+    .btn-activate:active {
+      transform: scale(0.98);
+    }
+
+    /* Inventory Panel: Target Apartments */
+    .inventory-panel {
+      width: 100%;
+      background: var(--navy-card);
+      border: 1px solid var(--navy-card-border);
+      border-radius: 14px;
+      padding: 18px 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 1px solid rgba(226, 177, 76, 0.2);
+      padding-bottom: 8px;
+    }
+    .panel-title {
+      font-family: var(--font-title);
+      font-size: 15px;
+      color: var(--gold-primary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .inventory-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+    }
+    .apartment-card {
+      background: rgba(10, 18, 35, 0.85);
+      border: 1px solid rgba(226, 177, 76, 0.25);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .apartment-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(245, 207, 117, 0.2);
+    }
+    .apt-badge {
+      display: inline-block;
+      font-family: var(--font-title);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+    .apt-spec {
+      font-size: 12px;
+      color: #9cb4d8;
+      line-height: 1.5;
+    }
+    .apt-status {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(0, 229, 255, 0.1);
+      color: #00e5ff;
+      border: 1px solid rgba(0, 229, 255, 0.3);
+    }
+
+    /* ====================================================
+       STAGE 2: SUSPENSE / SHUFFLING OVERLAY (GIAI ĐOẠN QUAY)
+    ==================================================== */
+    #suspense-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 13, 0.94);
+      z-index: 200;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(20px);
+    }
+    .countdown-number {
+      font-family: var(--font-title);
+      font-size: 130px;
+      font-weight: 900;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 50px rgba(245, 207, 117, 0.7);
+      animation: popIn 0.8s ease-in-out infinite alternate;
+    }
+    .vortex-subtext {
+      font-family: var(--font-title);
+      font-size: 22px;
+      color: var(--gold-light);
+      letter-spacing: 3px;
+      margin-top: 15px;
+      text-transform: uppercase;
+    }
+    .progress-box {
+      width: 550px;
+      margin-top: 35px;
+      background: rgba(14, 25, 48, 0.8);
+      border: 1px solid rgba(226, 177, 76, 0.4);
+      border-radius: 30px;
+      padding: 6px;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+    }
+    .progress-bar-fill {
+      height: 14px;
+      width: 0%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #00e5ff, #f5cf75, #ffd978);
+      box-shadow: 0 0 15px rgba(245, 207, 117, 0.8);
+      transition: width 0.1s linear;
+    }
+    .vortex-stream {
+      display: flex;
+      gap: 20px;
+      margin-top: 25px;
+      font-family: monospace;
+      font-size: 15px;
+      color: #6ef1ff;
+      opacity: 0.85;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0.8; }
+      to { transform: scale(1.1); opacity: 1; }
+    }
+
+    /* ====================================================
+       STAGE 3: AFTER DRAW (SAU KHI QUAY / KẾT QUẢ)
+    ==================================================== */
+    #stage-post {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      animation: fadeIn 0.8s ease;
+    }
+
+    /* Filter & Search Bar */
+    .results-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 15px;
+    }
+    .tab-group {
+      display: flex;
+      gap: 10px;
+    }
+    .tab-btn {
+      background: rgba(15, 28, 54, 0.8);
+      border: 1px solid rgba(226, 177, 76, 0.3);
+      color: #9cb4d8;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .tab-btn.active {
+      background: var(--gold-gradient);
+      color: #0b1527;
+      font-weight: 700;
+      border-color: transparent;
+      box-shadow: 0 0 15px rgba(226, 177, 76, 0.4);
+    }
+    .search-input-box {
+      position: relative;
+      width: 380px;
+    }
+    .search-input-box input {
+      width: 100%;
+      background: rgba(10, 20, 40, 0.85);
+      border: 1px solid rgba(226, 177, 76, 0.35);
+      color: #fff;
+      padding: 9px 16px 9px 38px;
+      border-radius: 30px;
+      font-size: 13px;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+    .search-input-box input:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px rgba(245, 207, 117, 0.3);
+    }
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold-primary);
+      font-size: 14px;
+    }
+
+    /* Results Dashboard Grid */
+    .results-board-wrapper {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+      height: 480px;
+    }
+
+    /* Left / Main Winners Board */
+    .board-winners-showcase {
+      flex: 1.1;
+      background: var(--navy-card);
+      border: 1px solid var(--gold-secondary);
+      border-radius: 14px;
+      padding: 16px 20px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(226, 177, 76, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(226, 177, 76, 0.3);
+    }
+    .board-title-gold {
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Winner Card Styles */
+    .winners-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .winner-card {
+      background: linear-gradient(90deg, rgba(30, 48, 85, 0.85) 0%, rgba(20, 32, 58, 0.95) 100%);
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 10px;
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 18px rgba(226, 177, 76, 0.15);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .winner-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: var(--gold-gradient);
+    }
+    .winner-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 6px 25px rgba(226, 177, 76, 0.35);
+    }
+    .winner-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .winner-medal {
+      width: 36px;
+      height: 36px;
+      background: var(--gold-gradient);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #0b1527;
+      font-weight: 900;
+      font-size: 16px;
+      box-shadow: 0 0 10px rgba(226, 177, 76, 0.5);
+    }
+    .winner-details h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+    .winner-details p {
+      font-size: 12px;
+      color: #9cb4d8;
+    }
+    .winner-prize-badge {
+      font-family: var(--font-title);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 6px;
+      background: rgba(226, 177, 76, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(226, 177, 76, 0.2);
+    }
+
+    /* Right / Non-winners & Waiting List Board */
+    .board-waiting-showcase {
+      flex: 0.9;
+      background: rgba(10, 18, 35, 0.7);
+      border: 1px solid rgba(150, 170, 205, 0.2);
+      border-radius: 14px;
+      padding: 16px 20px;
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+    }
+    .board-title-silver {
+      font-family: var(--font-title);
+      font-size: 15px;
+      font-weight: 700;
+      color: #bcd1ee;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .waiting-list-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .waiting-card {
+      background: rgba(14, 25, 48, 0.5);
+      border: 1px solid rgba(120, 145, 185, 0.18);
+      border-radius: 8px;
+      padding: 9px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+    .waiting-card:hover {
+      background: rgba(20, 35, 65, 0.7);
+      border-color: rgba(120, 145, 185, 0.4);
+    }
+    .waiting-info {
+      color: #cadbee;
+      font-weight: 500;
+    }
+    .waiting-status-badge {
+      font-size: 11px;
+      color: #8fa7c9;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Footer: Bottom Bar with Search & QR */
+    footer {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px 18px;
+      border-top: 1px solid rgba(226, 177, 76, 0.15);
+      background: rgba(3, 7, 13, 0.6);
+      backdrop-filter: blur(10px);
+    }
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 12px;
+      color: #8da4c4;
+    }
+    .footer-qr-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(14, 25, 48, 0.85);
+      border: 1px solid rgba(226, 177, 76, 0.35);
+      padding: 6px 14px;
+      border-radius: 8px;
+    }
+    .footer-qr-card svg {
+      width: 44px;
+      height: 44px;
+      background: #fff;
+      padding: 3px;
+      border-radius: 4px;
+    }
+    .footer-qr-text {
+      text-align: left;
+    }
+    .footer-qr-text strong {
+      display: block;
+      color: var(--gold-light);
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+    .footer-qr-text span {
+      font-size: 11px;
+      color: #9cb4d8;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(10, 18, 35, 0.3);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(226, 177, 76, 0.3);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold-primary);
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Ambient Glow -->
+  <div class="ambient-light light-top-left"></div>
+  <div class="ambient-light light-top-right"></div>
+  <div class="ambient-light light-center"></div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Top Controls -->
+  <div class="top-controls">
+    <button class="util-btn" onclick="toggleFullScreen()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      Toàn màn hình [F11]
+    </button>
+    <button class="util-btn" id="btn-reset" onclick="resetToStagePre()" style="display:none;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      Quay lại Bước 1
+    </button>
+    <button class="util-btn" onclick="exportResultsCSV()" id="btn-export" style="display:none;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Xuất kết quả (.CSV)
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-badge">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      LUXURY RESIDENCE GALA
+    </div>
+    <h1 class="main-title" id="page-title">LỄ BỐC THĂM QUYỀN MUA CĂN HỘ</h1>
+    <div class="subtitle">ĐỢT MỞ BÁN ĐẶC BIỆT • TỔNG CỘNG 500 KHÁCH HÀNG THAM GIA</div>
+    <div class="status-badge" id="system-status">
+      <span class="pulse-dot"></span>
+      <span id="status-text">TRẠNG THÁI: SẴN SÀNG KHỞI ĐỘNG (500 KHÁCH HÀNG ĐÃ CHECK-IN)</span>
+    </div>
+  </header>
+
+  <!-- Main Stage Area -->
+  <div class="stage-container">
+
+    <!-- ====================================================
+         BƯỚC 1: TRƯỚC KHI QUAY (PRE-SPIN)
+    ==================================================== -->
+    <div id="stage-pre">
+      <div class="hero-hologram">
+        <div class="hologram-ring ring-1"></div>
+        <div class="hologram-ring ring-2"></div>
+        <div class="hologram-ring ring-3"></div>
+        <!-- 3D Holographic Tower SVG Icon -->
+        <svg class="hologram-tower-icon" width="130" height="170" viewBox="0 0 24 24" fill="none" stroke="url(#goldGrad)" stroke-width="1.4">
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff2c4"/>
+              <stop offset="50%" stop-color="#e2b14c"/>
+              <stop offset="100%" stop-color="#996e1a"/>
+            </linearGradient>
+          </defs>
+          <rect x="4" y="2" width="16" height="20" rx="2"/>
+          <line x1="8" y1="6" x2="8" y2="6.01"/>
+          <line x1="12" y1="6" x2="12" y2="6.01"/>
+          <line x1="16" y1="6" x2="16" y2="6.01"/>
+          <line x1="8" y1="10" x2="8" y2="10.01"/>
+          <line x1="12" y1="10" x2="12" y2="10.01"/>
+          <line x1="16" y1="10" x2="16" y2="10.01"/>
+          <line x1="8" y1="14" x2="8" y2="14.01"/>
+          <line x1="12" y1="14" x2="12" y2="14.01"/>
+          <line x1="16" y1="14" x2="16" y2="14.01"/>
+          <path d="M10 22v-4h4v4"/>
+        </svg>
+      </div>
+
+      <button class="btn-activate" onclick="startDrawProcess()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        KÍCH HOẠT BỐC THĂM
+      </button>
+
+      <!-- Apartment Inventory Display -->
+      <div class="inventory-panel">
+        <div class="panel-header">
+          <span class="panel-title">DANH MỤC CĂN HỘ MỞ THƯỞNG HÔM NAY (QUYỀN CHỌN MUA ĐỢT 1)</span>
+          <span style="font-size: 12px; color: var(--gold-light);">TỔNG SỐ SUẤT: 05 CĂN ĐỘC BẢN</span>
+        </div>
+        <div class="inventory-grid">
+          <div class="apartment-card">
+            <div class="apt-badge">CĂN A1</div>
+            <div class="apt-spec">Tầng 05 • 85m²<br>3 Phòng Ngủ • View Sông</div>
+            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          </div>
+          <div class="apartment-card">
+            <div class="apt-badge">CĂN A2</div>
+            <div class="apt-spec">Tầng 08 • 92m²<br>3 Phòng Ngủ • Căn Góc</div>
+            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          </div>
+          <div class="apartment-card">
+            <div class="apt-badge">CĂN A3</div>
+            <div class="apt-spec">Tầng 12 • 105m²<br>Penthouse mini • View Sky</div>
+            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          </div>
+          <div class="apartment-card">
+            <div class="apt-badge">CĂN A4</div>
+            <div class="apt-spec">Tầng 15 • 78m²<br>2 Phòng Ngủ • Ban công rộng</div>
+            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          </div>
+          <div class="apartment-card">
+            <div class="apt-badge">CĂN A5</div>
+            <div class="apt-spec">Tầng 18 • 110m²<br>Duplex • Vị trí Hoàng Gia</div>
+            <div class="apt-status">ĐANG CHỜ CHỦ NHÂN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================
+         BƯỚC 2: SAU KHI QUAY (POST-SPIN RESULTS)
+    ==================================================== -->
+    <div id="stage-post">
+      <!-- Results Toolbar -->
+      <div class="results-toolbar">
+        <div class="tab-group">
+          <button class="tab-btn active" id="tab-all" onclick="filterDisplay('all')">Tất cả (500)</button>
+          <button class="tab-btn" id="tab-winners" onclick="filterDisplay('winners')">Trúng Suất Mua (5)</button>
+          <button class="tab-btn" id="tab-waiting" onclick="filterDisplay('waiting')">Danh Sách Chờ (495)</button>
+        </div>
+        <div class="search-input-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" placeholder="Nhập Mã KH (VD: KH-042) hoặc Số ĐT..." oninput="handleSearch()">
+        </div>
+      </div>
+
+      <!-- Results Grid Container -->
+      <div class="results-board-wrapper">
+        <!-- 5 Lucky Winners of Apartments A1 - A5 -->
+        <div class="board-winners-showcase" id="col-winners">
+          <div class="board-header">
+            <div class="board-title-gold">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+              CHỦ NHÂN TRÚNG QUYỀN MUA CĂN HỘ (A1 - A5)
+            </div>
+            <span style="font-size: 12px; color: var(--cyan-glow); font-weight: 700;">5/5 ĐÃ XÁC NHẬN</span>
+          </div>
+          <div class="winners-list" id="winners-container">
+            <!-- Injected by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Remaining 495 Non-winners (Waiting List) -->
+        <div class="board-waiting-showcase" id="col-waiting">
+          <div class="board-header">
+            <div class="board-title-silver">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              DANH SÁCH CHỜ ĐỢT 2 (495 KHÁCH HÀNG)
+            </div>
+            <span style="font-size: 11px; color: #8fa7c9;">Tự động cuộn</span>
+          </div>
+          <div class="waiting-list-scroll" id="waiting-container">
+            <!-- Injected by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Suspense Animation Overlay -->
+  <div id="suspense-overlay">
+    <div class="countdown-number" id="countdown-val">5</div>
+    <div class="vortex-subtext" id="vortex-status">ĐANG KẾT NỐI HỆ THỐNG MÃ HÓA 500 KHÁCH HÀNG...</div>
+    <div class="progress-box">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+    <div class="vortex-stream" id="vortex-stream-text">
+      KH-289 ➜ GHÉP CĂN... | KH-042 ➜ ĐỐI SOÁT DỮ LIỆU...
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-left">
+      <span>Đơn vị tổ chức: <strong>Chủ Đầu Tư & Ban Quản Lý Dự Án</strong></span>
+      <span>•</span>
+      <span>Công nghệ bốc thăm: <strong>Random Algorithm 100% Minh Bạch</strong></span>
+    </div>
+    <div class="footer-qr-card">
+      <!-- Clean SVG QR Code Representation -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0b1527" stroke-width="2">
+        <rect x="2" y="2" width="8" height="8" rx="1"/>
+        <rect x="14" y="2" width="8" height="8" rx="1"/>
+        <rect x="2" y="14" width="8" height="8" rx="1"/>
+        <rect x="5" y="5" width="2" height="2" fill="#0b1527"/>
+        <rect x="17" y="5" width="2" height="2" fill="#0b1527"/>
+        <rect x="5" y="17" width="2" height="2" fill="#0b1527"/>
+        <line x1="14" y1="14" x2="14" y2="14.01"/>
+        <line x1="18" y1="14" x2="22" y2="14"/>
+        <line x1="14" y1="18" x2="14" y2="22"/>
+        <line x1="18" y1="18" x2="22" y2="22"/>
+      </svg>
+      <div class="footer-qr-text">
+        <strong>TRA CỨU TRÊN ĐIỆN THOẠI</strong>
+        <span>Quét mã QR để xem kết quả của bạn</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ====================================================
+    // DATA GENERATION: 500 Realistic Attendees
+    // ====================================================
+    const hoNames = ["Nguyễn", "Trần", "Lê", "Phạm", "Hoàng", "Huỳnh", "Phan", "Vũ", "Võ", "Đặng", "Bùi", "Đỗ", "Hồ", "Ngô", "Dương", "Lý"];
+    const demNames = ["Văn", "Thị", "Hồng", "Đức", "Minh", "Thu", "Ngọc", "Thanh", "Quốc", "Anh", "Tuấn", "Hoàng", "Gia"];
+    const tenNames = ["An", "Bình", "Cường", "Dũng", "Em", "Giang", "Hải", "Hương", "Huy", "Khánh", "Linh", "Long", "Mai", "Nam", "Nga", "Phong", "Phúc", "Quân", "Sơn", "Thắng", "Thảo", "Tùng", "Vinh", "Yến"];
+
+    function randomPhone() {
+      const prefixes = ["090", "091", "098", "097", "093", "094", "088", "089"];
+      const pre = prefixes[Math.floor(Math.random() * prefixes.length)];
+      const last = Math.floor(1000 + Math.random() * 9000);
+      return `${pre}***${last}`;
+    }
+
+    const targetApartments = [
+      { id: "A1", desc: "Tầng 05 • 85m² • View Sông" },
+      { id: "A2", desc: "Tầng 08 • 92m² • Căn Góc" },
+      { id: "A3", desc: "Tầng 12 • 105m² • Penthouse mini" },
+      { id: "A4", desc: "Tầng 15 • 78m² • Ban công rộng" },
+      { id: "A5", desc: "Tầng 18 • 110m² • Duplex Hoàng Gia" }
+    ];
+
+    // Generate 500 Attendees
+    let attendees = [];
+    for (let i = 1; i <= 500; i++) {
+      const ho = hoNames[Math.floor(Math.random() * hoNames.length)];
+      const dem = demNames[Math.floor(Math.random() * demNames.length)];
+      const ten = tenNames[Math.floor(Math.random() * tenNames.length)];
+      const code = `KH-${String(i).padStart(3, '0')}`;
+      attendees.push({
+        id: i,
+        code: code,
+        fullName: `${ho} ${dem} ${ten}`,
+        phone: randomPhone(),
+        isWinner: false,
+        wonApartment: null,
+        rank: null
+      });
+    }
+
+    let winnersList = [];
+    let waitingList = [];
+
+    // ====================================================
+    // WEB AUDIO API: Built-in Sound Effects (100% Offline)
+    // ====================================================
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playBeep(freq = 440, type = 'sine', duration = 0.1) {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playHeartbeat() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(65, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(35, ctx.currentTime + 0.25);
+        gain.gain.setValueAtTime(0.5, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.25);
+      } catch (e) {}
+    }
+
+    function playFanfare() {
+      try {
+        const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99];
+        notes.forEach((freq, idx) => {
+          setTimeout(() => {
+            playBeep(freq, 'triangle', 0.4);
+          }, idx * 90);
+        });
+      } catch (e) {}
+    }
+
+    // ====================================================
+    // SUSPENSE FLOW & DRAW LOGIC (1 LẦN BẤM DUY NHẤT)
+    // ====================================================
+    function startDrawProcess() {
+      // 1. Audio Activation
+      getAudioContext();
+
+      // 2. Perform Single Fisher-Yates Shuffle on 500 Attendees
+      let shuffled = [...attendees];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+
+      // Assign the first 5 lucky attendees to A1 - A5
+      winnersList = [];
+      for (let k = 0; k < targetApartments.length; k++) {
+        shuffled[k].isWinner = true;
+        shuffled[k].wonApartment = targetApartments[k];
+        shuffled[k].rank = k + 1;
+        winnersList.push(shuffled[k]);
+      }
+
+      // Remaining 495 attendees are in Waiting List
+      waitingList = [];
+      for (let m = targetApartments.length; m < shuffled.length; m++) {
+        shuffled[m].isWinner = false;
+        shuffled[m].wonApartment = null;
+        shuffled[m].waitRank = m - targetApartments.length + 1;
+        waitingList.push(shuffled[m]);
+      }
+
+      // 3. Show Suspense Shuffling Overlay
+      const overlay = document.getElementById('suspense-overlay');
+      const countEl = document.getElementById('countdown-val');
+      const statusEl = document.getElementById('vortex-status');
+      const barEl = document.getElementById('progress-bar');
+      const streamEl = document.getElementById('vortex-stream-text');
+
+      overlay.style.display = 'flex';
+
+      let count = 5;
+      countEl.innerText = count;
+      playBeep(600, 'sine', 0.15);
+
+      let progress = 0;
+      const streamInterval = setInterval(() => {
+        const randomKH1 = attendees[Math.floor(Math.random() * attendees.length)].code;
+        const randomKH2 = attendees[Math.floor(Math.random() * attendees.length)].code;
+        const randomApt = targetApartments[Math.floor(Math.random() * targetApartments.length)].id;
+        streamEl.innerText = `${randomKH1} ➜ ĐỐI SOÁT CĂN ${randomApt}... | ${randomKH2} ➜ MÃ HÓA SUẤT CHỜ...`;
+        playBeep(250 + Math.random() * 300, 'sawtooth', 0.04);
+      }, 90);
+
+      // Countdown Timer (5s)
+      const countdownInterval = setInterval(() => {
+        count--;
+        if (count > 0) {
+          countEl.innerText = count;
+          playBeep(650, 'sine', 0.15);
+        } else if (count === 0) {
+          clearInterval(countdownInterval);
+          countEl.innerText = "99%";
+          statusEl.innerText = "ĐANG KHÓA THUẬT TOÁN BỐC THĂM VÀ ĐỐI CHIẾU 500 MÃ...";
+          playHeartbeat();
+          
+          // Brief dramatic freeze (1.5 seconds)
+          setTimeout(() => {
+            playHeartbeat();
+            countEl.innerText = "100%";
+            statusEl.innerText = "HỆ THỐNG ĐÃ XÁC ĐỊNH HOÀN TẤT 500 KẾT QUẢ!";
+            barEl.style.width = '100%';
+
+            setTimeout(() => {
+              clearInterval(streamInterval);
+              overlay.style.display = 'none';
+              showStagePost();
+            }, 800);
+
+          }, 1400);
+        }
+      }, 1000);
+
+      // Smooth progress bar fill
+      const progressInterval = setInterval(() => {
+        if (progress < 95) {
+          progress += 2;
+          barEl.style.width = progress + '%';
+        } else {
+          clearInterval(progressInterval);
+        }
+      }, 100);
+    }
+
+    // ====================================================
+    // RENDER RESULTS TO STAGE 2
+    // ====================================================
+    function showStagePost() {
+      document.getElementById('stage-pre').style.display = 'none';
+      document.getElementById('stage-post').style.display = 'flex';
+      document.getElementById('btn-reset').style.display = 'flex';
+      document.getElementById('btn-export').style.display = 'flex';
+
+      // Update Header Title & Status
+      document.getElementById('page-title').innerText = "KẾT QUẢ BỐC THĂM QUYỀN MUA CĂN HỘ";
+      const statusEl = document.getElementById('system-status');
+      statusEl.className = "status-badge locked";
+      statusEl.innerHTML = `<span class="pulse-dot"></span><span>HỆ THỐNG ĐÃ KHÓA KẾT QUẢ TOÀN BỘ 500 KHÁCH HÀNG 🔒</span>`;
+
+      // 1. Render 5 Lucky Winners
+      const winContainer = document.getElementById('winners-container');
+      winContainer.innerHTML = '';
+      winnersList.forEach(w => {
+        const card = document.createElement('div');
+        card.className = 'winner-card';
+        card.dataset.code = w.code.toLowerCase();
+        card.dataset.phone = w.phone;
+        card.dataset.name = w.fullName.toLowerCase();
+        card.innerHTML = `
+          <div class="winner-info">
+            <div class="winner-medal">★</div>
+            <div class="winner-details">
+              <h4>${w.fullName} • <span style="color:var(--gold-primary); font-family:monospace;">${w.code}</span></h4>
+              <p>SĐT: ${w.phone} • ${w.wonApartment.desc}</p>
+            </div>
+          </div>
+          <div class="winner-prize-badge">TRÚNG SUẤT MUA CĂN ${w.wonApartment.id}</div>
+        `;
+        winContainer.appendChild(card);
+      });
+
+      // 2. Render 495 Waiting Attendees
+      const waitContainer = document.getElementById('waiting-container');
+      waitContainer.innerHTML = '';
+      waitingList.forEach((att, idx) => {
+        const row = document.createElement('div');
+        row.className = 'waiting-card';
+        row.dataset.code = att.code.toLowerCase();
+        row.dataset.phone = att.phone;
+        row.dataset.name = att.fullName.toLowerCase();
+        row.innerHTML = `
+          <div class="waiting-info">
+            <strong style="color:#ffffff;">${att.fullName}</strong> 
+            <span style="color:#7ca0cc; margin: 0 6px;">|</span> 
+            <span style="font-family:monospace; color:#ffd978;">${att.code}</span>
+            <span style="color:#7ca0cc; margin: 0 6px;">|</span>
+            <span>${att.phone}</span>
+          </div>
+          <div class="waiting-status-badge">DANH SÁCH CHỜ #${idx + 1}</div>
+        `;
+        waitContainer.appendChild(row);
+      });
+
+      // 3. Audio & Confetti Celebration
+      playFanfare();
+      triggerConfetti();
+
+      // 4. Start Gentle Auto-Scroll on Waiting List
+      startAutoScrollWaitingList();
+    }
+
+    // Auto-scroll Waiting List smoothly
+    let scrollInterval = null;
+    function startAutoScrollWaitingList() {
+      const waitContainer = document.getElementById('waiting-container');
+      if (scrollInterval) clearInterval(scrollInterval);
+      
+      let isPaused = false;
+      waitContainer.addEventListener('mouseenter', () => isPaused = true);
+      waitContainer.addEventListener('mouseleave', () => isPaused = false);
+
+      scrollInterval = setInterval(() => {
+        if (!isPaused && waitContainer.style.display !== 'none') {
+          waitContainer.scrollTop += 1;
+          if (waitContainer.scrollTop >= (waitContainer.scrollHeight - waitContainer.clientHeight - 2)) {
+            waitContainer.scrollTop = 0; // Loop back
+          }
+        }
+      }, 50);
+    }
+
+    // ====================================================
+    // SEARCH & FILTER LOGIC
+    // ====================================================
+    function handleSearch() {
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      const winCards = document.querySelectorAll('.winner-card');
+      const waitCards = document.querySelectorAll('.waiting-card');
+
+      winCards.forEach(card => {
+        const match = card.dataset.code.includes(q) || card.dataset.phone.includes(q) || card.dataset.name.includes(q);
+        card.style.display = match ? 'flex' : 'none';
+        if (q && match) {
+          card.style.borderColor = '#00e5ff';
+          card.style.boxShadow = '0 0 25px rgba(0, 229, 255, 0.6)';
+        } else {
+          card.style.borderColor = 'var(--gold-primary)';
+          card.style.boxShadow = '';
+        }
+      });
+
+      waitCards.forEach(card => {
+        const match = card.dataset.code.includes(q) || card.dataset.phone.includes(q) || card.dataset.name.includes(q);
+        card.style.display = match ? 'flex' : 'none';
+        if (q && match) {
+          card.style.borderColor = '#00e5ff';
+          card.style.background = 'rgba(0, 229, 255, 0.15)';
+        } else {
+          card.style.borderColor = '';
+          card.style.background = '';
+        }
+      });
+    }
+
+    function filterDisplay(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`tab-${tab}`).classList.add('active');
+
+      const colWinners = document.getElementById('col-winners');
+      const colWaiting = document.getElementById('col-waiting');
+
+      if (tab === 'all') {
+        colWinners.style.display = 'flex';
+        colWaiting.style.display = 'flex';
+      } else if (tab === 'winners') {
+        colWinners.style.display = 'flex';
+        colWaiting.style.display = 'none';
+      } else if (tab === 'waiting') {
+        colWinners.style.display = 'none';
+        colWaiting.style.display = 'flex';
+      }
+    }
+
+    // ====================================================
+    // RESET & UTILITIES
+    // ====================================================
+    function resetToStagePre() {
+      if (confirm("Bạn có chắc muốn quay lại Bước 1 để chuẩn bị lượt bốc thăm mới?")) {
+        if (scrollInterval) clearInterval(scrollInterval);
+        document.getElementById('stage-pre').style.display = 'flex';
+        document.getElementById('stage-post').style.display = 'none';
+        document.getElementById('btn-reset').style.display = 'none';
+        document.getElementById('btn-export').style.display = 'none';
+        document.getElementById('page-title').innerText = "LỄ BỐC THĂM QUYỀN MUA CĂN HỘ";
+        const statusEl = document.getElementById('system-status');
+        statusEl.className = "status-badge";
+        statusEl.innerHTML = `<span class="pulse-dot"></span><span>TRẠNG THÁI: SẴN SÀNG KHỞI ĐỘNG (500 KHÁCH HÀNG ĐÃ CHECK-IN)</span>`;
+        document.getElementById('search-input').value = '';
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    function exportResultsCSV() {
+      let csv = "STT,Mã Khách Hàng,Họ Và Tên,Số Điện Thoại,Kết Quả,Căn Hộ Trúng,Thời Gian\n";
+      let now = new Date().toLocaleString('vi-VN');
+      
+      // Add winners
+      winnersList.forEach((w, idx) => {
+        csv += `${idx + 1},${w.code},"${w.fullName}",${w.phone},TRÚNG SUẤT MUA,Căn ${w.wonApartment.id},"${now}"\n`;
+      });
+
+      // Add waiting
+      waitingList.forEach((att, idx) => {
+        csv += `${winnersList.length + idx + 1},${att.code},"${att.fullName}",${att.phone},DANH SÁCH CHỜ #${idx + 1},Chưa trúng,"${now}"\n`;
+      });
+
+      const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `Ket_Qua_Boc_Tham_Can_Ho_${Date.now()}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // ====================================================
+    // LIGHTWEIGHT CANVAS CONFETTI ENGINE
+    // ====================================================
+    function triggerConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const pieces = [];
+      const colors = ['#f5cf75', '#d4a341', '#fff0be', '#00e5ff', '#ffffff', '#e2b14c'];
+
+      for (let i = 0; i < 180; i++) {
+        pieces.push({
+          x: canvas.width / 2,
+          y: canvas.height * 0.4,
+          w: Math.random() * 12 + 6,
+          h: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 24,
+          vy: (Math.random() - 0.8) * 20,
+          rotation: Math.random() * 360,
+          rspeed: (Math.random() - 0.5) * 10,
+          opacity: 1
+        });
+      }
+
+      let animId;
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+
+        pieces.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.35; // Gravity
+          p.vx *= 0.98; // Friction
+          p.rotation += p.rspeed;
+          p.opacity -= 0.005;
+
+          if (p.opacity > 0) {
+            active = true;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rotation * Math.PI) / 180);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.opacity;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+          }
+        });
+
+        if (active) {
+          animId = requestAnimationFrame(render);
+        } else {
+          cancelAnimationFrame(animId);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      render();
+    }
+  </script>
+</body>
+</html>
