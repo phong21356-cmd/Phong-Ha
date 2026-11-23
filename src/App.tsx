@@ -171,7 +171,7 @@ export default function App() {
       if (count > 0) {
         setCountdownVal(`0${count}`);
         if (count === 3) {
-          setVortexStatus('Đang phân bổ ngẫu nhiên 05 quyền mua căn hộ giới hạn A1 – A5...');
+          setVortexStatus('Đang xếp ngẫu nhiên 05 căn loại A1 – A5...');
         } else if (count === 1) {
           setVortexStatus('Đang niêm phong thứ tự danh sách ưu tiên Đợt 2 cho 495 khách hàng...');
         }
@@ -185,7 +185,7 @@ export default function App() {
         setTimeout(() => {
           playPulseBeat(muted);
           setCountdownVal('100%');
-          setVortexStatus('Hoàn tất đối soát. Đã xác định chính thức 05 chủ nhân quyền mua Đợt 1.');
+          setVortexStatus('Hoàn tất đối soát. Đã xác định chính thức 05 hồ sơ được xếp căn Đợt 1.');
           setProgress(100);
 
           setTimeout(() => {
@@ -250,7 +250,7 @@ export default function App() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `Bien_Ban_Boc_Tham_Aurelia_Residences_${Date.now()}.csv`);
+    link.setAttribute('download', `Bien_Ban_Boc_Tham_An_Phuc_Imperia_${Date.now()}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -281,13 +281,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0C0E] text-[#F4F1EA] flex flex-col justify-between relative selection:bg-[#C5A880]/30">
+    <div className="min-h-screen bg-[#0B1118] text-[#FAFAFA] flex flex-col justify-between relative selection:bg-[#D4AE59]/30">
       {/* Subtle architectural ambient radial light */}
       <div
         className="pointer-events-none fixed inset-0 z-0"
         style={{
           background:
-            'radial-gradient(circle at 50% 0%, rgba(197, 168, 128, 0.08) 0%, rgba(11, 12, 14, 0) 65%)',
+            'radial-gradient(circle at 50% 0%, rgba(212, 174, 89, 0.08) 0%, rgba(11, 17, 24, 0) 65%)',
         }}
       />
 
@@ -300,7 +300,7 @@ export default function App() {
       {/* =================================================================
           STRICT 3-ZONE TOP BAR CONTRACT
       ================================================================= */}
-      <header className="relative z-20 flex items-center justify-between gap-8 px-6 lg:px-12 py-4 border-b border-[#C5A880]/15 bg-[#0B0C0E]/90 backdrop-blur-md">
+      <header className="relative z-20 flex items-center justify-between gap-8 px-6 lg:px-12 py-4 border-b border-[#D4AE59]/15 bg-[#0B1118]/90 backdrop-blur-md">
         {/* Zone 1: Single text element wordmark */}
         <a
           href="#top"
@@ -310,13 +310,13 @@ export default function App() {
               setActiveTab('all');
             }
           }}
-          className="text-lg md:text-xl font-serif font-semibold tracking-[0.18em] text-[#F4F1EA] uppercase whitespace-nowrap shrink-0"
+          className="text-lg md:text-xl font-sans font-semibold tracking-[0.18em] text-[#FAFAFA] uppercase whitespace-nowrap shrink-0"
         >
-          THE AURELIA RESIDENCES
+          AN PHÚC IMPERIA
         </a>
 
         {/* Zone 2: 4 concise single-line text navigation links */}
-        <nav className="hidden md:flex items-center gap-8 text-xs font-medium tracking-wider uppercase text-[#9E9A90]">
+        <nav className="hidden md:flex items-center gap-8 text-xs font-medium tracking-wider uppercase text-[#A3A3A3]">
           <button
             onClick={() => {
               if (stage === 'post') {
@@ -325,7 +325,7 @@ export default function App() {
                 portfolioSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="hover:text-[#F4F1EA] transition-colors whitespace-nowrap shrink-0 cursor-pointer py-1 border-b border-transparent hover:border-[#C5A880]"
+            className="hover:text-[#FAFAFA] transition-colors whitespace-nowrap shrink-0 cursor-pointer py-1 border-b border-transparent hover:border-[#D4AE59]"
           >
             Danh mục Căn hộ
           </button>
@@ -337,8 +337,8 @@ export default function App() {
             }}
             className={`transition-colors whitespace-nowrap shrink-0 cursor-pointer py-1 border-b ${
               stage === 'pre'
-                ? 'text-[#F4F1EA] border-[#C5A880]'
-                : 'hover:text-[#F4F1EA] border-transparent hover:border-[#C5A880]'
+                ? 'text-[#FAFAFA] border-[#D4AE59]'
+                : 'hover:text-[#FAFAFA] border-transparent hover:border-[#D4AE59]'
             }`}
           >
             Hội trường Bốc thăm
@@ -353,8 +353,8 @@ export default function App() {
             }}
             className={`transition-colors whitespace-nowrap shrink-0 cursor-pointer py-1 border-b ${
               stage === 'post'
-                ? 'text-[#F4F1EA] border-[#C5A880]'
-                : 'hover:text-[#F4F1EA] border-transparent hover:border-[#C5A880]'
+                ? 'text-[#FAFAFA] border-[#D4AE59]'
+                : 'hover:text-[#FAFAFA] border-transparent hover:border-[#D4AE59]'
             }`}
           >
             Bảng kết quả
@@ -364,7 +364,7 @@ export default function App() {
               setSelectedAttendeeForCert(null);
               setIsLookupModalOpen(true);
             }}
-            className="hover:text-[#F4F1EA] transition-colors whitespace-nowrap shrink-0 cursor-pointer py-1 border-b border-transparent hover:border-[#C5A880]"
+            className="hover:text-[#FAFAFA] transition-colors whitespace-nowrap shrink-0 cursor-pointer py-1 border-b border-transparent hover:border-[#D4AE59]"
           >
             Tra cứu Mã KH
           </button>
@@ -375,14 +375,14 @@ export default function App() {
           {stage === 'pre' ? (
             <button
               onClick={startDrawProcess}
-              className="px-5 py-2.5 text-xs font-semibold tracking-wider uppercase bg-[#C5A880] text-[#0B0C0E] hover:bg-[#D6BC96] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              className="px-5 py-2.5 text-xs font-semibold tracking-wider uppercase bg-[#D4AE59] text-[#0B1118] hover:bg-[#E8CC83] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
               Kích hoạt Bốc thăm
             </button>
           ) : (
             <button
               onClick={handleExportCSV}
-              className="px-5 py-2.5 text-xs font-semibold tracking-wider uppercase bg-[#C5A880] text-[#0B0C0E] hover:bg-[#D6BC96] transition-colors whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-2"
+              className="px-5 py-2.5 text-xs font-semibold tracking-wider uppercase bg-[#D4AE59] text-[#0B1118] hover:bg-[#E8CC83] transition-colors whitespace-nowrap shrink-0 cursor-pointer flex items-center gap-2"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Xuất Biên bản (.CSV)</span>
@@ -396,14 +396,14 @@ export default function App() {
       ================================================================= */}
       <main className="relative z-10 flex-1 w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-6 lg:py-8 flex flex-col justify-between">
         {/* Workspace Operational Sub-Bar (Clean unboxed metadata + Utility Controls) */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-[#C5A880]/15">
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-[#D4AE59]/15">
           {/* Unboxed Metadata with Typographic Separators (Zero-Pill Rule) */}
-          <div className="flex flex-wrap items-center gap-2.5 text-xs tracking-wider uppercase text-[#9E9A90]">
-            <span className="text-[#C5A880] font-medium">Đợt Mở Bán Đặc Biệt · Đợt 1</span>
+          <div className="flex flex-wrap items-center gap-2.5 text-xs tracking-wider uppercase text-[#A3A3A3]">
+            <span className="text-[#D4AE59] font-medium">Đợt mở bán · Đợt 1</span>
             <span aria-hidden="true">·</span>
-            <span className="font-mono tabular-nums text-[#F4F1EA]">500 Khách hàng đã Check-in</span>
+            <span className="font-sans tabular-nums text-[#FAFAFA]">500 Khách hàng đã Check-in</span>
             <span aria-hidden="true">·</span>
-            <span className="font-mono tabular-nums">05 Suất Quyền Mua Độc Bản</span>
+            <span className="font-sans tabular-nums">05 căn mẫu A1 – A5</span>
             <span aria-hidden="true">·</span>
             <span>
               {stage === 'pre'
@@ -416,7 +416,7 @@ export default function App() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setMuted(!muted)}
-              className="px-3 py-1.5 text-xs text-[#9E9A90] hover:text-[#F4F1EA] border border-[#C5A880]/20 hover:border-[#C5A880]/50 bg-[#121418] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+              className="px-3 py-1.5 text-xs text-[#A3A3A3] hover:text-[#FAFAFA] border border-[#D4AE59]/20 hover:border-[#D4AE59]/50 bg-[#101921] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
               title={muted ? 'Bật âm thanh sự kiện' : 'Tắt âm thanh sự kiện'}
             >
               {muted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
@@ -428,15 +428,15 @@ export default function App() {
                 setSelectedAttendeeForCert(null);
                 setIsLookupModalOpen(true);
               }}
-              className="px-3 py-1.5 text-xs text-[#9E9A90] hover:text-[#F4F1EA] border border-[#C5A880]/20 hover:border-[#C5A880]/50 bg-[#121418] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+              className="px-3 py-1.5 text-xs text-[#A3A3A3] hover:text-[#FAFAFA] border border-[#D4AE59]/20 hover:border-[#D4AE59]/50 bg-[#101921] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
             >
-              <FileText className="w-3.5 h-3.5 text-[#C5A880]" />
+              <FileText className="w-3.5 h-3.5 text-[#D4AE59]" />
               <span>Danh sách 500 KH</span>
             </button>
 
             <button
               onClick={toggleFullScreen}
-              className="px-3 py-1.5 text-xs text-[#9E9A90] hover:text-[#F4F1EA] border border-[#C5A880]/20 hover:border-[#C5A880]/50 bg-[#121418] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+              className="px-3 py-1.5 text-xs text-[#A3A3A3] hover:text-[#FAFAFA] border border-[#D4AE59]/20 hover:border-[#D4AE59]/50 bg-[#101921] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
             >
               <Maximize2 className="w-3.5 h-3.5" />
               <span>Toàn màn hình</span>
@@ -445,7 +445,7 @@ export default function App() {
             {stage === 'post' && (
               <button
                 onClick={() => setIsResetConfirmOpen(true)}
-                className="px-3 py-1.5 text-xs text-[#C5A880] hover:text-[#F4F1EA] border border-[#C5A880]/30 hover:border-[#C5A880] bg-[#121418] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+                className="px-3 py-1.5 text-xs text-[#D4AE59] hover:text-[#FAFAFA] border border-[#D4AE59]/30 hover:border-[#D4AE59] bg-[#101921] transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Đặt lại Phiên mới</span>
@@ -462,48 +462,48 @@ export default function App() {
             {/* 2-Column Asymmetric Architectural Split Hero */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
               {/* Left Column: Editorial Ceremony Brief & Primary Trigger */}
-              <div className="lg:col-span-7 flex flex-col justify-between bg-[#121418] border border-[#C5A880]/20 p-8 lg:p-10">
+              <div className="lg:col-span-7 flex flex-col justify-between bg-[#101921] border border-[#D4AE59]/20 p-8 lg:p-10">
                 <div>
-                  <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#C5A880] mb-3">
-                    PRIVATE CLIENT ALLOCATION · SAIGON RIVERFRONT
+                  <div className="text-xs font-sans tabular-nums uppercase tracking-[0.2em] text-[#D4AE59] mb-3">
+                    NHÀ Ở XÃ HỘI · ĐỢT 1
                   </div>
                   <h1
-                    className="text-3xl sm:text-4xl lg:text-[44px] font-serif font-medium text-[#F4F1EA] leading-[1.15] tracking-tight mb-4"
+                    className="text-3xl sm:text-4xl lg:text-[44px] font-sans font-medium text-[#FAFAFA] leading-[1.15] tracking-tight mb-4"
                     style={{ textWrap: 'balance' }}
                   >
-                    Lễ Bốc Thăm Quyền Mua Bộ Sưu Tập 05 Căn Hộ Giới Hạn
+                    Lễ bốc thăm xếp căn nhà ở xã hội An Phúc Imperia
                   </h1>
-                  <p className="text-sm md:text-base text-[#9E9A90] leading-relaxed max-w-[65ch] mb-8">
-                    Hệ thống phân bổ ngẫu nhiên minh bạch dựa trên thuật toán chuẩn hóa Fisher-Yates.
-                    Với một lần kích hoạt duy nhất, hệ thống đồng thời xác định 05 chủ nhân sở hữu
-                    quyền mua các căn hộ độc bản <span className="text-[#F4F1EA] font-mono">A1 – A5</span> và
+                  <p className="text-sm md:text-base text-[#A3A3A3] leading-relaxed max-w-[65ch] mb-8">
+                    Hệ thống xếp ngẫu nhiên minh bạch dựa trên thuật toán Fisher-Yates.
+                    Với một lần kích hoạt duy nhất, hệ thống đồng thời xác định 05 hồ sơ được xếp
+                    căn loại <span className="text-[#FAFAFA] font-sans tabular-nums">A1 – A5</span> và
                     xác lập thứ tự ưu tiên Đợt 2 cho 495 khách hàng tham dự.
                   </p>
 
                   {/* Architectural Key Figures Grid */}
-                  <div className="grid grid-cols-3 gap-6 py-5 border-t border-b border-[#C5A880]/15 mb-8">
+                  <div className="grid grid-cols-3 gap-6 py-5 border-t border-b border-[#D4AE59]/15 mb-8">
                     <div>
-                      <div className="text-[11px] uppercase tracking-widest text-[#9E9A90] mb-1">
+                      <div className="text-[11px] uppercase tracking-widest text-[#A3A3A3] mb-1">
                         Hồ sơ hợp lệ
                       </div>
-                      <div className="text-2xl lg:text-3xl font-serif font-semibold text-[#F4F1EA] tabular-nums">
-                        500 <span className="text-xs font-sans font-normal text-[#9E9A90]">Khách hàng</span>
+                      <div className="text-2xl lg:text-3xl font-sans font-semibold text-[#FAFAFA] tabular-nums">
+                        500 <span className="text-xs font-sans font-normal text-[#A3A3A3]">Khách hàng</span>
                       </div>
                     </div>
                     <div>
-                      <div className="text-[11px] uppercase tracking-widest text-[#9E9A90] mb-1">
-                        Quỹ căn mở thưởng
+                      <div className="text-[11px] uppercase tracking-widest text-[#A3A3A3] mb-1">
+                        Quỹ căn mở bốc thăm
                       </div>
-                      <div className="text-2xl lg:text-3xl font-serif font-semibold text-[#C5A880] tabular-nums">
-                        05 <span className="text-xs font-sans font-normal text-[#9E9A90]">Căn giới hạn</span>
+                      <div className="text-2xl lg:text-3xl font-sans font-semibold text-[#D4AE59] tabular-nums">
+                        05 <span className="text-xs font-sans font-normal text-[#A3A3A3]">Căn mẫu</span>
                       </div>
                     </div>
                     <div>
-                      <div className="text-[11px] uppercase tracking-widest text-[#9E9A90] mb-1">
+                      <div className="text-[11px] uppercase tracking-widest text-[#A3A3A3] mb-1">
                         Danh sách chờ Đợt 2
                       </div>
-                      <div className="text-2xl lg:text-3xl font-serif font-semibold text-[#F4F1EA] tabular-nums">
-                        495 <span className="text-xs font-sans font-normal text-[#9E9A90]">Suất ưu tiên</span>
+                      <div className="text-2xl lg:text-3xl font-sans font-semibold text-[#FAFAFA] tabular-nums">
+                        495 <span className="text-xs font-sans font-normal text-[#A3A3A3]">Hồ sơ chờ</span>
                       </div>
                     </div>
                   </div>
@@ -513,25 +513,25 @@ export default function App() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
                   <button
                     onClick={startDrawProcess}
-                    className="px-8 py-4 bg-[#C5A880] hover:bg-[#D6BC96] text-[#0B0C0E] font-semibold text-sm tracking-[0.14em] uppercase transition-all flex items-center justify-center gap-3 cursor-pointer shadow-lg"
+                    className="px-8 py-4 bg-[#D4AE59] hover:bg-[#E8CC83] text-[#0B1118] font-semibold text-sm tracking-[0.14em] uppercase transition-all flex items-center justify-center gap-3 cursor-pointer shadow-lg"
                   >
                     <span>Kích Hoạt Bốc Thăm Đợt 1</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </button>
-                  <div className="text-xs text-[#9E9A90] leading-relaxed">
-                    <div>Mã hồ sơ: <span className="font-mono text-[#F4F1EA]">KH-001 → KH-500</span></div>
-                    <div>Chế độ: <span className="text-[#C5A880]">1 lần bấm · Khóa kết quả tức thì</span></div>
+                  <div className="text-xs text-[#A3A3A3] leading-relaxed">
+                    <div>Mã hồ sơ: <span className="font-sans tabular-nums text-[#FAFAFA]">KH-001 → KH-500</span></div>
+                    <div>Chế độ: <span className="text-[#D4AE59]">1 lần bấm · Khóa kết quả tức thì</span></div>
                   </div>
                 </div>
               </div>
 
               {/* Right Column: Interactive Architectural Elevation Monolith Diagram */}
-              <div className="lg:col-span-5 bg-[#121418] border border-[#C5A880]/20 p-6 lg:p-8 flex flex-col justify-between">
-                <div className="flex items-center justify-between text-xs text-[#9E9A90] pb-3 border-b border-[#C5A880]/15">
-                  <span className="uppercase tracking-widest font-mono text-[#C5A880]">
-                    MẶT ĐỨNG KIẾN TRÚC · THÁP THE AURELIA
+              <div className="lg:col-span-5 bg-[#101921] border border-[#D4AE59]/20 p-6 lg:p-8 flex flex-col justify-between">
+                <div className="flex items-center justify-between text-xs text-[#A3A3A3] pb-3 border-b border-[#D4AE59]/15">
+                  <span className="uppercase tracking-widest font-sans tabular-nums text-[#D4AE59]">
+                    MẶT ĐỨNG · TÒA NHÀ Ở XÃ HỘI
                   </span>
-                  <span className="font-mono tabular-nums">CAO ĐỘ: +118.5m</span>
+                  <span className="font-sans tabular-nums">SỐ TẦNG: 23</span>
                 </div>
 
                 {/* Architectural Tower SVG with interactive highlighted floors */}
@@ -547,7 +547,7 @@ export default function App() {
                       y1="242"
                       x2="400"
                       y2="242"
-                      stroke="rgba(197, 168, 128, 0.35)"
+                      stroke="rgba(212, 174, 89, 0.35)"
                       strokeWidth="1"
                     />
 
@@ -557,7 +557,7 @@ export default function App() {
                       y1="15"
                       x2="80"
                       y2="242"
-                      stroke="rgba(197, 168, 128, 0.08)"
+                      stroke="rgba(212, 174, 89, 0.08)"
                       strokeDasharray="3 3"
                     />
                     <line
@@ -565,7 +565,7 @@ export default function App() {
                       y1="15"
                       x2="230"
                       y2="242"
-                      stroke="rgba(197, 168, 128, 0.08)"
+                      stroke="rgba(212, 174, 89, 0.08)"
                       strokeDasharray="3 3"
                     />
 
@@ -575,9 +575,9 @@ export default function App() {
                       y="24"
                       width="120"
                       height="218"
-                      stroke="#C5A880"
+                      stroke="#D4AE59"
                       strokeWidth="1.5"
-                      fill="rgba(197, 168, 128, 0.03)"
+                      fill="rgba(212, 174, 89, 0.03)"
                     />
                     {/* Crown / Penthouse setbacks */}
                     <rect
@@ -585,21 +585,21 @@ export default function App() {
                       y="12"
                       width="90"
                       height="12"
-                      stroke="#C5A880"
+                      stroke="#D4AE59"
                       strokeWidth="1.2"
                     />
                     {/* Vertical Architectural Mullions */}
-                    <line x1="125" y1="24" x2="125" y2="242" stroke="rgba(197, 168, 128, 0.2)" strokeWidth="0.75" />
-                    <line x1="155" y1="24" x2="155" y2="242" stroke="rgba(197, 168, 128, 0.2)" strokeWidth="0.75" />
-                    <line x1="185" y1="24" x2="185" y2="242" stroke="rgba(197, 168, 128, 0.2)" strokeWidth="0.75" />
+                    <line x1="125" y1="24" x2="125" y2="242" stroke="rgba(212, 174, 89, 0.2)" strokeWidth="0.75" />
+                    <line x1="155" y1="24" x2="155" y2="242" stroke="rgba(212, 174, 89, 0.2)" strokeWidth="0.75" />
+                    <line x1="185" y1="24" x2="185" y2="242" stroke="rgba(212, 174, 89, 0.2)" strokeWidth="0.75" />
 
                     {/* Highlighted Residences Floors: A5 (T18), A4 (T15), A3 (T12), A2 (T08), A1 (T05) */}
                     {[
-                      { unit: TARGET_APARTMENTS[4], y: 42, h: 18, label: 'A5 · TẦNG 18 (110m²)' },
-                      { unit: TARGET_APARTMENTS[3], y: 78, h: 13, label: 'A4 · TẦNG 15 (78m²)' },
-                      { unit: TARGET_APARTMENTS[2], y: 112, h: 14, label: 'A3 · TẦNG 12 (105m²)' },
-                      { unit: TARGET_APARTMENTS[1], y: 152, h: 13, label: 'A2 · TẦNG 08 (92.5m²)' },
-                      { unit: TARGET_APARTMENTS[0], y: 188, h: 13, label: 'A1 · TẦNG 05 (85m²)' },
+                      { unit: TARGET_APARTMENTS[4], y: 42, h: 18, label: 'A5 · TẦNG 18 (76,9m²)' },
+                      { unit: TARGET_APARTMENTS[3], y: 78, h: 13, label: 'A4 · TẦNG 15 (69,6m²)' },
+                      { unit: TARGET_APARTMENTS[2], y: 112, h: 14, label: 'A3 · TẦNG 12 (59,3m²)' },
+                      { unit: TARGET_APARTMENTS[1], y: 152, h: 13, label: 'A2 · TẦNG 08 (50,1m²)' },
+                      { unit: TARGET_APARTMENTS[0], y: 188, h: 13, label: 'A1 · TẦNG 05 (36,8m²)' },
                     ].map((fl) => {
                       const isHovered = hoveredUnitId === fl.unit.id;
                       return (
@@ -616,10 +616,10 @@ export default function App() {
                             height={fl.h}
                             fill={
                               isHovered
-                                ? 'rgba(197, 168, 128, 0.45)'
-                                : 'rgba(197, 168, 128, 0.16)'
+                                ? 'rgba(212, 174, 89, 0.45)'
+                                : 'rgba(212, 174, 89, 0.16)'
                             }
-                            stroke="#C5A880"
+                            stroke="#D4AE59"
                             strokeWidth={isHovered ? '1.6' : '1'}
                           />
                           <line
@@ -627,19 +627,19 @@ export default function App() {
                             y1={fl.y + fl.h / 2}
                             x2="255"
                             y2={fl.y + fl.h / 2}
-                            stroke="#C5A880"
+                            stroke="#D4AE59"
                             strokeWidth={isHovered ? '1.5' : '0.8'}
                           />
                           <circle
                             cx="255"
                             cy={fl.y + fl.h / 2}
                             r="2.5"
-                            fill="#C5A880"
+                            fill="#D4AE59"
                           />
                           <text
                             x="265"
                             y={fl.y + fl.h / 2 + 3.5}
-                            fill={isHovered ? '#F4F1EA' : '#C5A880'}
+                            fill={isHovered ? '#FAFAFA' : '#D4AE59'}
                             fontSize="10"
                             fontFamily="JetBrains Mono, monospace"
                             fontWeight={isHovered ? '600' : '400'}
@@ -653,7 +653,7 @@ export default function App() {
                 </div>
 
                 {/* Bottom interactive hint */}
-                <div className="pt-3 border-t border-[#C5A880]/15 flex items-center justify-between text-xs text-[#9E9A90]">
+                <div className="pt-3 border-t border-[#D4AE59]/15 flex items-center justify-between text-xs text-[#A3A3A3]">
                   <span>Chọn tầng trên mặt đứng hoặc thẻ căn hộ để xem bản vẽ</span>
                   <button
                     onClick={() => {
@@ -662,7 +662,7 @@ export default function App() {
                         TARGET_APARTMENTS[0];
                       setSelectedUnitForModal(unit);
                     }}
-                    className="text-[#C5A880] hover:underline font-medium cursor-pointer whitespace-nowrap"
+                    className="text-[#D4AE59] hover:underline font-medium cursor-pointer whitespace-nowrap"
                   >
                     Xem mặt bằng {hoveredUnitId || 'A1'} →
                   </button>
@@ -674,11 +674,11 @@ export default function App() {
             <div ref={portfolioSectionRef}>
               <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                 <div className="flex items-center gap-3">
-                  <h2 className="text-lg md:text-xl font-serif font-semibold tracking-wide text-[#F4F1EA] uppercase">
-                    Danh Mục 05 Căn Hộ Độc Bản Mở Thưởng Đợt 1
+                  <h2 className="text-lg md:text-xl font-sans font-semibold tracking-wide text-[#FAFAFA] uppercase">
+                    Danh mục 05 loại căn mở bốc thăm Đợt 1
                   </h2>
                 </div>
-                <div className="text-xs text-[#9E9A90]">
+                <div className="text-xs text-[#A3A3A3]">
                   Nhấn vào từng căn hộ để xem chi tiết mặt bằng kỹ thuật 1/100
                 </div>
               </div>
@@ -691,39 +691,39 @@ export default function App() {
                       key={apt.id}
                       onMouseEnter={() => setHoveredUnitId(apt.id)}
                       onClick={() => setSelectedUnitForModal(apt)}
-                      className={`group bg-[#121418] border transition-colors p-5 flex flex-col justify-between cursor-pointer ${
+                      className={`group bg-[#101921] border transition-colors p-5 flex flex-col justify-between cursor-pointer ${
                         isActive
-                          ? 'border-[#C5A880] bg-[#161920]'
-                          : 'border-[#C5A880]/20 hover:border-[#C5A880]/60'
+                          ? 'border-[#D4AE59] bg-[#16212B]'
+                          : 'border-[#D4AE59]/20 hover:border-[#D4AE59]/60'
                       }`}
                     >
                       <div>
                         {/* Editorial Numbering & Typology Code (No Pill Badges) */}
-                        <div className="flex items-center justify-between text-xs font-mono text-[#9E9A90] mb-3 pb-2 border-b border-[#C5A880]/15">
-                          <span className="text-[#C5A880] font-semibold">
+                        <div className="flex items-center justify-between text-xs font-sans tabular-nums text-[#A3A3A3] mb-3 pb-2 border-b border-[#D4AE59]/15">
+                          <span className="text-[#D4AE59] font-semibold">
                             {apt.indexNumber}. CĂN {apt.id}
                           </span>
                           <span>{apt.code}</span>
                         </div>
 
-                        <h3 className="text-lg font-serif font-semibold text-[#F4F1EA] group-hover:text-[#C5A880] transition-colors mb-1.5">
+                        <h3 className="text-lg font-sans font-semibold text-[#FAFAFA] group-hover:text-[#D4AE59] transition-colors mb-1.5">
                           {apt.name}
                         </h3>
 
                         {/* Unboxed metadata with middle-dot separators */}
-                        <div className="text-xs text-[#D6D2C4] font-mono tabular-nums mb-2">
+                        <div className="text-xs text-[#D4D4D4] font-sans tabular-nums mb-2">
                           {apt.floor} <span aria-hidden="true">·</span> {apt.area}
                         </div>
-                        <div className="text-xs text-[#9E9A90] mb-4">
+                        <div className="text-xs text-[#A3A3A3] mb-4">
                           {apt.bedrooms} <span aria-hidden="true">·</span> {apt.orientation}
                         </div>
                       </div>
 
-                      <div className="pt-3 border-t border-[#C5A880]/15 flex items-center justify-between text-xs">
-                        <span className="font-mono text-[#C5A880] font-medium tabular-nums">
+                      <div className="pt-3 border-t border-[#D4AE59]/15 flex items-center justify-between text-xs">
+                        <span className="font-sans tabular-nums text-[#D4AE59] font-medium tabular-nums">
                           {apt.referencePrice}
                         </span>
-                        <span className="text-[#9E9A90] group-hover:text-[#F4F1EA] flex items-center gap-1 transition-colors">
+                        <span className="text-[#A3A3A3] group-hover:text-[#FAFAFA] flex items-center gap-1 transition-colors">
                           <span>Mặt bằng</span>
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </span>
@@ -744,13 +744,13 @@ export default function App() {
             {/* Results Toolbar: Segmented Filter Buttons + Live Search Input */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               {/* Interactive Segmented Filter Controls */}
-              <div className="flex items-center gap-1 p-1 bg-[#121418] border border-[#C5A880]/20 self-start">
+              <div className="flex items-center gap-1 p-1 bg-[#101921] border border-[#D4AE59]/20 self-start">
                 <button
                   onClick={() => setActiveTab('all')}
                   className={`px-4 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                     activeTab === 'all'
-                      ? 'bg-[#C5A880] text-[#0B0C0E] font-semibold'
-                      : 'text-[#9E9A90] hover:text-[#F4F1EA]'
+                      ? 'bg-[#D4AE59] text-[#0B1118] font-semibold'
+                      : 'text-[#A3A3A3] hover:text-[#FAFAFA]'
                   }`}
                 >
                   Tất cả Hồ sơ (500)
@@ -759,8 +759,8 @@ export default function App() {
                   onClick={() => setActiveTab('winners')}
                   className={`px-4 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                     activeTab === 'winners'
-                      ? 'bg-[#C5A880] text-[#0B0C0E] font-semibold'
-                      : 'text-[#9E9A90] hover:text-[#F4F1EA]'
+                      ? 'bg-[#D4AE59] text-[#0B1118] font-semibold'
+                      : 'text-[#A3A3A3] hover:text-[#FAFAFA]'
                   }`}
                 >
                   Trúng Quyền Mua Đợt 1 (05)
@@ -769,8 +769,8 @@ export default function App() {
                   onClick={() => setActiveTab('waiting')}
                   className={`px-4 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                     activeTab === 'waiting'
-                      ? 'bg-[#C5A880] text-[#0B0C0E] font-semibold'
-                      : 'text-[#9E9A90] hover:text-[#F4F1EA]'
+                      ? 'bg-[#D4AE59] text-[#0B1118] font-semibold'
+                      : 'text-[#A3A3A3] hover:text-[#FAFAFA]'
                   }`}
                 >
                   Danh Sách Ưu Tiên Đợt 2 (495)
@@ -779,18 +779,18 @@ export default function App() {
 
               {/* Search Input Box */}
               <div className="relative w-full md:w-96">
-                <Search className="w-4 h-4 text-[#C5A880] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 text-[#D4AE59] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Tìm Mã KH (VD: KH-042), Họ tên, SĐT..."
-                  className="w-full bg-[#121418] border border-[#C5A880]/30 focus:border-[#C5A880] text-xs text-[#F4F1EA] pl-10 pr-8 py-2.5 outline-none transition-colors"
+                  className="w-full bg-[#101921] border border-[#D4AE59]/30 focus:border-[#D4AE59] text-xs text-[#FAFAFA] pl-10 pr-8 py-2.5 outline-none transition-colors"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#9E9A90] hover:text-[#F4F1EA] cursor-pointer"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#A3A3A3] hover:text-[#FAFAFA] cursor-pointer"
                   >
                     Xóa
                   </button>
@@ -805,66 +805,66 @@ export default function App() {
                 <div
                   className={`${
                     activeTab === 'winners' ? 'lg:col-span-12' : 'lg:col-span-7'
-                  } bg-[#121418] border border-[#C5A880]/35 p-6 flex flex-col justify-between`}
+                  } bg-[#101921] border border-[#D4AE59]/35 p-6 flex flex-col justify-between`}
                 >
                   <div>
-                    <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-[#C5A880]/20">
+                    <div className="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-[#D4AE59]/20">
                       <div>
-                        <div className="text-[11px] font-mono uppercase tracking-widest text-[#C5A880]">
+                        <div className="text-[11px] font-sans tabular-nums uppercase tracking-widest text-[#D4AE59]">
                           BIÊN BẢN PHÂN BỔ CHÍNH THỨC · ĐỢT 1
                         </div>
-                        <h2 className="text-xl font-serif font-semibold text-[#F4F1EA] mt-0.5">
-                          Chủ Nhân Sở Hữu Quyền Mua Căn Hộ Giới Hạn (A1 – A5)
+                        <h2 className="text-xl font-sans font-semibold text-[#FAFAFA] mt-0.5">
+                          Hồ sơ được xếp căn loại A1 – A5
                         </h2>
                       </div>
-                      <span className="text-xs font-mono text-[#C5A880] tabular-nums">
-                        05 / 05 SUẤT ĐÃ XÁC LẬP
+                      <span className="text-xs font-sans tabular-nums text-[#D4AE59] tabular-nums">
+                        05 / 05 CĂN ĐÃ XẾP
                       </span>
                     </div>
 
                     {filteredWinners.length === 0 ? (
-                      <div className="py-12 text-center text-xs text-[#9E9A90]">
+                      <div className="py-12 text-center text-xs text-[#A3A3A3]">
                         Không tìm thấy khách hàng trúng quyền mua khớp với từ khóa &ldquo;{searchQuery}&rdquo;.
                       </div>
                     ) : (
-                      <div className="divide-y divide-[#C5A880]/15">
+                      <div className="divide-y divide-[#D4AE59]/15">
                         {filteredWinners.map((w) => (
                           <div
                             key={w.code}
-                            className="py-4 first:pt-1 last:pb-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:bg-[#161920]/70 px-3 -mx-3 transition-colors"
+                            className="py-4 first:pt-1 last:pb-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:bg-[#16212B]/70 px-3 -mx-3 transition-colors"
                           >
                             <div className="flex items-start gap-4">
                               {/* Editorial Numerical Index */}
-                              <div className="w-10 h-10 border border-[#C5A880]/40 bg-[#0B0C0E] flex items-center justify-center font-mono text-xs font-semibold text-[#C5A880] shrink-0 tabular-nums">
+                              <div className="w-10 h-10 border border-[#D4AE59]/40 bg-[#0B1118] flex items-center justify-center font-sans tabular-nums text-xs font-semibold text-[#D4AE59] shrink-0 tabular-nums">
                                 0{w.rank}
                               </div>
 
                               <div>
                                 <div className="flex flex-wrap items-center gap-2">
-                                  <h3 className="text-base font-serif font-semibold text-[#F4F1EA]">
+                                  <h3 className="text-base font-sans font-semibold text-[#FAFAFA]">
                                     {w.fullName}
                                   </h3>
-                                  <span aria-hidden="true" className="text-[#9E9A90]">·</span>
-                                  <span className="font-mono text-xs text-[#C5A880] font-medium tabular-nums">
+                                  <span aria-hidden="true" className="text-[#A3A3A3]">·</span>
+                                  <span className="font-sans tabular-nums text-xs text-[#D4AE59] font-medium tabular-nums">
                                     {w.code}
                                   </span>
-                                  <span aria-hidden="true" className="text-[#9E9A90]">·</span>
-                                  <span className="font-mono text-xs text-[#9E9A90] tabular-nums">
+                                  <span aria-hidden="true" className="text-[#A3A3A3]">·</span>
+                                  <span className="font-sans tabular-nums text-xs text-[#A3A3A3] tabular-nums">
                                     {w.phone}
                                   </span>
                                 </div>
 
                                 {w.wonApartment && (
-                                  <div className="text-xs text-[#9E9A90] mt-1 flex flex-wrap items-center gap-1.5">
-                                    <span className="text-[#D6D2C4] font-medium">
+                                  <div className="text-xs text-[#A3A3A3] mt-1 flex flex-wrap items-center gap-1.5">
+                                    <span className="text-[#D4D4D4] font-medium">
                                       {w.wonApartment.name}
                                     </span>
                                     <span aria-hidden="true">·</span>
                                     <span>{w.wonApartment.floor}</span>
                                     <span aria-hidden="true">·</span>
-                                    <span className="font-mono tabular-nums">{w.wonApartment.area}</span>
+                                    <span className="font-sans tabular-nums">{w.wonApartment.area}</span>
                                     <span aria-hidden="true">·</span>
-                                    <span className="font-mono text-[#C5A880] tabular-nums">
+                                    <span className="font-sans tabular-nums text-[#D4AE59] tabular-nums">
                                       {w.wonApartment.referencePrice}
                                     </span>
                                   </div>
@@ -877,7 +877,7 @@ export default function App() {
                               {w.wonApartment && (
                                 <button
                                   onClick={() => setSelectedUnitForModal(w.wonApartment)}
-                                  className="px-3 py-1.5 text-xs font-mono border border-[#C5A880]/30 text-[#F4F1EA] hover:border-[#C5A880] bg-[#0B0C0E] transition-colors cursor-pointer whitespace-nowrap"
+                                  className="px-3 py-1.5 text-xs font-sans tabular-nums border border-[#D4AE59]/30 text-[#FAFAFA] hover:border-[#D4AE59] bg-[#0B1118] transition-colors cursor-pointer whitespace-nowrap"
                                 >
                                   CĂN {w.wonApartment.id}
                                 </button>
@@ -887,7 +887,7 @@ export default function App() {
                                   setSelectedAttendeeForCert(w);
                                   setIsLookupModalOpen(true);
                                 }}
-                                className="px-3 py-1.5 text-xs font-medium bg-[#C5A880]/15 border border-[#C5A880]/40 text-[#C5A880] hover:bg-[#C5A880] hover:text-[#0B0C0E] transition-colors cursor-pointer whitespace-nowrap"
+                                className="px-3 py-1.5 text-xs font-medium bg-[#D4AE59]/15 border border-[#D4AE59]/40 text-[#D4AE59] hover:bg-[#D4AE59] hover:text-[#0B1118] transition-colors cursor-pointer whitespace-nowrap"
                               >
                                 Chứng nhận
                               </button>
@@ -899,12 +899,12 @@ export default function App() {
                   </div>
 
                   {/* Summary footnote inside winners panel */}
-                  <div className="mt-6 pt-3 border-t border-[#C5A880]/15 flex flex-wrap items-center justify-between gap-2 text-xs text-[#9E9A90]">
+                  <div className="mt-6 pt-3 border-t border-[#D4AE59]/15 flex flex-wrap items-center justify-between gap-2 text-xs text-[#A3A3A3]">
                     <span className="flex items-center gap-1.5">
-                      <Check className="w-3.5 h-3.5 text-[#C5A880]" />
+                      <Check className="w-3.5 h-3.5 text-[#D4AE59]" />
                       <span>Kết quả đã được đối soát tự động và lưu trữ biên bản điện tử</span>
                     </span>
-                    <span className="font-mono tabular-nums">MÃ PHIÊN: AUR-2026-B1</span>
+                    <span className="font-sans tabular-nums">MÃ PHIÊN: AP-2026-D1</span>
                   </div>
                 </div>
               )}
@@ -914,30 +914,30 @@ export default function App() {
                 <div
                   className={`${
                     activeTab === 'waiting' ? 'lg:col-span-12' : 'lg:col-span-5'
-                  } bg-[#121418] border border-[#C5A880]/20 p-6 flex flex-col justify-between h-[500px] lg:h-[520px]`}
+                  } bg-[#101921] border border-[#D4AE59]/20 p-6 flex flex-col justify-between h-[500px] lg:h-[520px]`}
                 >
-                  <div className="flex items-center justify-between gap-2 pb-4 mb-3 border-b border-[#C5A880]/15">
+                  <div className="flex items-center justify-between gap-2 pb-4 mb-3 border-b border-[#D4AE59]/15">
                     <div>
-                      <div className="text-[11px] font-mono uppercase tracking-widest text-[#9E9A90]">
+                      <div className="text-[11px] font-sans tabular-nums uppercase tracking-widest text-[#A3A3A3]">
                          BẢNG NIÊM YẾT THỨ TỰ ƯU TIÊN
                       </div>
-                      <h2 className="text-lg font-serif font-semibold text-[#F4F1EA] mt-0.5">
+                      <h2 className="text-lg font-sans font-semibold text-[#FAFAFA] mt-0.5">
                         Danh Sách Chờ Đợt 2 ({filteredWaiting.length} Khách Hàng)
                       </h2>
                     </div>
 
                     <button
                       onClick={() => setAutoScroll(!autoScroll)}
-                      className="px-2.5 py-1 text-[11px] font-mono text-[#9E9A90] hover:text-[#F4F1EA] border border-[#C5A880]/20 bg-[#0B0C0E] flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                      className="px-2.5 py-1 text-[11px] font-sans tabular-nums text-[#A3A3A3] hover:text-[#FAFAFA] border border-[#D4AE59]/20 bg-[#0B1118] flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
                     >
                       {autoScroll ? (
                         <>
-                          <Pause className="w-3 h-3 text-[#C5A880]" />
+                          <Pause className="w-3 h-3 text-[#D4AE59]" />
                           <span>Tạm dừng cuộn</span>
                         </>
                       ) : (
                         <>
-                          <Play className="w-3 h-3 text-[#C5A880]" />
+                          <Play className="w-3 h-3 text-[#D4AE59]" />
                           <span>Tự động cuộn</span>
                         </>
                       )}
@@ -945,7 +945,7 @@ export default function App() {
                   </div>
 
                   {/* Table Column Headers */}
-                  <div className="grid grid-cols-12 gap-2 px-3 py-2 text-[11px] font-mono uppercase tracking-wider text-[#9E9A90] border-b border-[#C5A880]/15 bg-[#0D0F12]">
+                  <div className="grid grid-cols-12 gap-2 px-3 py-2 text-[11px] font-sans tabular-nums uppercase tracking-wider text-[#A3A3A3] border-b border-[#D4AE59]/15 bg-[#0B1118]">
                     <div className="col-span-2">Thứ tự</div>
                     <div className="col-span-3">Mã KH</div>
                     <div className="col-span-4">Họ và tên</div>
@@ -957,10 +957,10 @@ export default function App() {
                     ref={waitingContainerRef}
                     onMouseEnter={() => setIsHoveringWaiting(true)}
                     onMouseLeave={() => setIsHoveringWaiting(false)}
-                    className="flex-1 overflow-y-auto divide-y divide-[#C5A880]/10 pr-1"
+                    className="flex-1 overflow-y-auto divide-y divide-[#D4AE59]/10 pr-1"
                   >
                     {filteredWaiting.length === 0 ? (
-                      <div className="py-12 text-center text-xs text-[#9E9A90]">
+                      <div className="py-12 text-center text-xs text-[#A3A3A3]">
                         Không tìm thấy hồ sơ trong danh sách chờ khớp với &ldquo;{searchQuery}&rdquo;.
                       </div>
                     ) : (
@@ -971,18 +971,18 @@ export default function App() {
                             setSelectedAttendeeForCert(att);
                             setIsLookupModalOpen(true);
                           }}
-                          className="grid grid-cols-12 gap-2 px-3 py-2.5 text-xs items-center hover:bg-[#181B22] transition-colors cursor-pointer"
+                          className="grid grid-cols-12 gap-2 px-3 py-2.5 text-xs items-center hover:bg-[#16212B] transition-colors cursor-pointer"
                         >
-                          <div className="col-span-2 font-mono text-[#9E9A90] tabular-nums">
+                          <div className="col-span-2 font-sans tabular-nums text-[#A3A3A3] tabular-nums">
                             #{String(att.waitRank).padStart(3, '0')}
                           </div>
-                          <div className="col-span-3 font-mono text-[#C5A880] tabular-nums">
+                          <div className="col-span-3 font-sans tabular-nums text-[#D4AE59] tabular-nums">
                             {att.code}
                           </div>
-                          <div className="col-span-4 font-medium text-[#F4F1EA] truncate">
+                          <div className="col-span-4 font-medium text-[#FAFAFA] truncate">
                             {att.fullName}
                           </div>
-                          <div className="col-span-3 font-mono text-[#9E9A90] text-right tabular-nums">
+                          <div className="col-span-3 font-sans tabular-nums text-[#A3A3A3] text-right tabular-nums">
                             {att.phone}
                           </div>
                         </div>
@@ -990,9 +990,9 @@ export default function App() {
                     )}
                   </div>
 
-                  <div className="pt-3 mt-2 border-t border-[#C5A880]/15 flex items-center justify-between text-[11px] text-[#9E9A90]">
+                  <div className="pt-3 mt-2 border-t border-[#D4AE59]/15 flex items-center justify-between text-[11px] text-[#A3A3A3]">
                     <span>Nhấn vào dòng bất kỳ để trích xuất chứng nhận ưu tiên</span>
-                    <span className="font-mono tabular-nums">495 / 500 HỒ SƠ</span>
+                    <span className="font-sans tabular-nums">495 / 500 HỒ SƠ</span>
                   </div>
                 </div>
               )}
@@ -1005,31 +1005,31 @@ export default function App() {
           STAGE 2: MINIMALIST CRYPTOGRAPHIC SUSPENSE OVERLAY
       ================================================================= */}
       {stage === 'drawing' && (
-        <div className="fixed inset-0 z-50 bg-[#0B0C0E]/95 backdrop-blur-xl flex flex-col items-center justify-center p-6">
+        <div className="fixed inset-0 z-50 bg-[#0B1118]/95 backdrop-blur-xl flex flex-col items-center justify-center p-6">
           <div className="max-w-xl w-full text-center">
-            <div className="text-xs font-mono uppercase tracking-[0.25em] text-[#C5A880] mb-4">
-              HỆ THỐNG PHÂN BỔ QUYỀN MUA ĐỘC LẬP · THE AURELIA
+            <div className="text-xs font-sans tabular-nums uppercase tracking-[0.25em] text-[#D4AE59] mb-4">
+              HỆ THỐNG XẾP CĂN ĐỘC LẬP · AN PHÚC IMPERIA
             </div>
 
             {/* Large Tabular Serif Countdown */}
-            <div className="text-7xl sm:text-8xl md:text-9xl font-serif font-normal text-[#F4F1EA] tracking-tight tabular-nums my-4">
+            <div className="text-7xl sm:text-8xl md:text-9xl font-sans font-normal text-[#FAFAFA] tracking-tight tabular-nums my-4">
               {countdownVal}
             </div>
 
-            <div className="text-sm md:text-base font-serif italic text-[#D6D2C4] mb-8">
+            <div className="text-sm md:text-base font-sans italic text-[#D4D4D4] mb-8">
               {vortexStatus}
             </div>
 
             {/* Minimalist 1px Champagne Progress Line */}
-            <div className="w-full h-1 bg-[#1A1D24] overflow-hidden mb-6">
+            <div className="w-full h-1 bg-[#16212B] overflow-hidden mb-6">
               <div
-                className="h-full bg-[#C5A880] transition-all duration-150"
+                className="h-full bg-[#D4AE59] transition-all duration-150"
                 style={{ width: `${progress}%` }}
               />
             </div>
 
             {/* Monospace Verification Stream */}
-            <div className="py-3 px-4 border border-[#C5A880]/20 bg-[#111317] font-mono text-xs text-[#9E9A90] tabular-nums truncate">
+            <div className="py-3 px-4 border border-[#D4AE59]/20 bg-[#101921] font-sans tabular-nums text-xs text-[#A3A3A3] tabular-nums truncate">
               {streamText}
             </div>
           </div>
@@ -1039,12 +1039,12 @@ export default function App() {
       {/* =================================================================
           QUIET INSTITUTIONAL FOOTER WITH QR LOOKUP TRIGGER
       ================================================================= */}
-      <footer className="relative z-10 border-t border-[#C5A880]/15 bg-[#0B0C0E] px-6 lg:px-12 py-4">
-        <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9E9A90]">
+      <footer className="relative z-10 border-t border-[#D4AE59]/15 bg-[#0B1118] px-6 lg:px-12 py-4">
+        <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A3A3A3]">
           <div className="flex flex-wrap items-center gap-2.5">
-            <span>Đơn vị tổ chức: <strong className="text-[#F4F1EA] font-medium">Aurelia Development &amp; Ban Quản Lý Dự Án</strong></span>
+            <span>Đơn vị tổ chức: <strong className="text-[#FAFAFA] font-medium">An Phúc Imperia &amp; Ban Quản Lý Dự Án</strong></span>
             <span aria-hidden="true">·</span>
-            <span>Thuật toán phân bổ: <strong className="text-[#C5A880] font-medium">Fisher-Yates 100% Minh Bạch</strong></span>
+            <span>Thuật toán phân bổ: <strong className="text-[#D4AE59] font-medium">Fisher-Yates minh bạch, có lưu vết</strong></span>
           </div>
 
           <button
@@ -1052,14 +1052,14 @@ export default function App() {
               setSelectedAttendeeForCert(null);
               setIsLookupModalOpen(true);
             }}
-            className="flex items-center gap-3 px-4 py-2 bg-[#121418] border border-[#C5A880]/30 hover:border-[#C5A880] transition-colors cursor-pointer"
+            className="flex items-center gap-3 px-4 py-2 bg-[#101921] border border-[#D4AE59]/30 hover:border-[#D4AE59] transition-colors cursor-pointer"
           >
-            <QrCode className="w-4 h-4 text-[#C5A880]" />
+            <QrCode className="w-4 h-4 text-[#D4AE59]" />
             <div className="text-left">
-              <div className="text-[11px] font-semibold uppercase tracking-wider text-[#F4F1EA]">
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-[#FAFAFA]">
                 Tra cứu Kết quả Cá nhân &amp; QR
               </div>
-              <div className="text-[10px] text-[#9E9A90]">
+              <div className="text-[10px] text-[#A3A3A3]">
                 Kiểm tra Mã KH (KH-001 → KH-500) &amp; Tải Biên bản
               </div>
             </div>
@@ -1098,29 +1098,29 @@ export default function App() {
           onClick={() => setIsResetConfirmOpen(false)}
         >
           <div
-            className="w-full max-w-md bg-[#121418] border border-[#C5A880]/40 p-6 text-[#F4F1EA] shadow-2xl"
+            className="w-full max-w-md bg-[#101921] border border-[#D4AE59]/40 p-6 text-[#FAFAFA] shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="text-xs font-mono uppercase tracking-widest text-[#C5A880] mb-2">
+            <div className="text-xs font-sans tabular-nums uppercase tracking-widest text-[#D4AE59] mb-2">
               XÁC NHẬN KHỞI TẠO LẠI PHIÊN BỐC THĂM
             </div>
-            <h3 className="text-xl font-serif font-semibold mb-2">
+            <h3 className="text-xl font-sans font-semibold mb-2">
               Quay lại Bước 1 để chuẩn bị lượt bốc thăm mới?
             </h3>
-            <p className="text-xs text-[#9E9A90] leading-relaxed mb-6">
+            <p className="text-xs text-[#A3A3A3] leading-relaxed mb-6">
               Dữ liệu phân bổ hiện tại của 500 khách hàng sẽ được đặt lại về trạng thái chờ khởi
               động. Hãy đảm bảo bạn đã xuất biên bản (.CSV) nếu cần lưu trữ kết quả vừa rồi.
             </p>
             <div className="flex items-center justify-end gap-3">
               <button
                 onClick={() => setIsResetConfirmOpen(false)}
-                className="px-4 py-2 text-xs font-medium text-[#9E9A90] hover:text-[#F4F1EA] border border-[#C5A880]/20 cursor-pointer"
+                className="px-4 py-2 text-xs font-medium text-[#A3A3A3] hover:text-[#FAFAFA] border border-[#D4AE59]/20 cursor-pointer"
               >
                 Hủy bỏ
               </button>
               <button
                 onClick={handleConfirmReset}
-                className="px-5 py-2 text-xs font-semibold uppercase tracking-wider bg-[#C5A880] text-[#0B0C0E] hover:bg-[#D6BC96] transition-colors cursor-pointer"
+                className="px-5 py-2 text-xs font-semibold uppercase tracking-wider bg-[#D4AE59] text-[#0B1118] hover:bg-[#E8CC83] transition-colors cursor-pointer"
               >
                 Xác nhận Đặt lại
               </button>
